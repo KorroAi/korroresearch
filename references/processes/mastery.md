@@ -1,4 +1,4 @@
-# Mastery  --  Beyond Rules. The Level Above.
+# Mastery, Beyond Rules. The Level Above.
 
 ## Goal
 
@@ -6,11 +6,11 @@ The skill's other guides teach you to write documents that are CORRECT. This gui
 
 ---
 
-## Dimension 1: Taste  --  The Curriculum
+## Dimension 1: Taste, The Curriculum
 
 Taste is not taught through rules. It is developed through exposure. You must read great documents NOT for their content, but for their CRAFT. How does the first sentence create compulsion? How does the last sentence leave a mark? Where does the author break convention and WHY?
 
-### The Taste Curriculum  --  20 Documents
+### The Taste Curriculum, 20 Documents
 
 Read these not for what they say, but for HOW they say it. Annotate each one: what makes it beautiful?
 
@@ -44,7 +44,7 @@ Read these not for what they say, but for HOW they say it. Annotate each one: wh
 |---|---|
 | Abelson & Sussman, "Structure and Interpretation of Computer Programs" | How the preface alone changes how you think about programming. The examples are chosen so each one teaches a new concept. |
 | Kahneman, "Thinking, Fast and Slow" | How to make decades of research feel like a conversation. Each chapter is one idea, one story, one insight. |
-| Hofstadter, "Godel, Escher, Bach" | How structure reinforces meaning. The dialogues between chapters are not decoration  --  they ARE the argument. |
+| Hofstadter, "Godel, Escher, Bach" | How structure reinforces meaning. The dialogues between chapters are not decoration, they ARE the argument. |
 
 **Pitch Decks / Presentations**
 | Document | What to Study |
@@ -56,7 +56,7 @@ Read these not for what they say, but for HOW they say it. Annotate each one: wh
 
 For each document in the curriculum:
 1. Read it once normally.
-2. Read it again, highlighting every sentence that creates COMPULSION  --  the sentences that make you NEED to read the next one.
+2. Read it again, highlighting every sentence that creates COMPULSION: the sentences that make you NEED to read the next one.
 3. Read it a third time, only the first and last sentences of each section. Does the skeleton tell the story?
 4. Write a one-page annotation: what did the author do that surprised you? What convention did they break? Why did it work?
 
@@ -64,7 +64,7 @@ Do this for 20 documents. Your writing will change. Not because you learned new 
 
 ---
 
-## Dimension 2: Danger  --  The Risk Calibrator
+## Dimension 2: Danger, The Risk Calibrator
 
 Safe papers get accepted. Dangerous papers get cited for 30 years. The question is not "is this correct?" The question is:
 
@@ -86,11 +86,11 @@ Before writing, answer:
 2. If I'm wrong, what's the most embarrassing mistake I'm making?
 3. If someone proves me wrong in 2 years, will I still be proud of having tried?
 
-If answer #1 is weak, your claim is too safe. If answer #2 is "nothing  --  it's trivially true," your claim is too safe. If answer #3 is "no," your claim is not a risk  --  it's a gamble. There's a difference.
+If answer #1 is weak, your claim is too safe. If answer #2 is "nothing, it's trivially true," your claim is too safe. If answer #3 is "no," your claim is not a risk, it's a gamble. There's a difference.
 
 ---
 
-## Dimension 3: Obsession  --  The Depth Protocol
+## Dimension 3: Obsession, The Depth Protocol
 
 Great papers come from people who could not STOP thinking about the problem. Not "this would be a good paper." But "I have to understand this or I will go crazy."
 
@@ -115,7 +115,7 @@ The paper should feel like the TIP of the iceberg. 90% of the thinking never mak
 
 ---
 
-## Dimension 4: Network  --  The Amplification Protocol
+## Dimension 4: Network, The Amplification Protocol
 
 Great papers become great because the RIGHT people champion them. Quality determines publishability. Network determines citability.
 
@@ -123,21 +123,21 @@ Great papers become great because the RIGHT people champion them. Quality determ
 
 Identify 5 people who, if they cite your paper, create a cascade:
 1. **The Authority**: The most cited person in your subfield. If they cite you, everyone else checks.
-2. **The Connector**: Someone who knows everyone. They don't need to cite you  --  they need to TELL people about you.
+2. **The Connector**: Someone who knows everyone. They don't need to cite you, they need to TELL people about you.
 3. **The Skeptic**: Someone known for being hard to impress. If they like it, it must be good.
 4. **The Rising Star**: A PhD student or postdoc who will be influential in 5 years. They are more accessible than the Authority.
 5. **The Journalist**: Someone who writes about your field for a general audience (Quanta, Wired, MIT Tech Review).
 
 ### The Warm Introduction Protocol
 
-1. **Before publishing**: Email each of the 5 people. "I've been working on X. Your work on Y inspired our approach on Z. Would you be willing to glance at a draft? No obligation  --  just would value your eye."
+1. **Before publishing**: Email each of the 5 people. "I've been working on X. Your work on Y inspired our approach on Z. Would you be willing to glance at a draft? No obligation, just would value your eye."
 2. **Acknowledge genuinely**: If their feedback improves the paper, thank them in the acknowledgments. People champion what they helped build.
-3. **After publishing**: Send the final version with a personal note. "Thanks again for your feedback  --  here's how it turned out. If you find it useful, I'd be honored if you shared it."
+3. **After publishing**: Send the final version with a personal note. "Thanks again for your feedback, here's how it turned out. If you find it useful, I'd be honored if you shared it."
 4. **Do not ask for citations directly.** People resent it. If the work is relevant, they will cite it. If not, nothing you say changes that.
 
 ### The Scene Protocol
 
-Great papers create a SCENE around them  --  a cluster of related work that cites each other, forming a visible research direction.
+Great papers create a SCENE around them: a cluster of related work that cites each other, forming a visible research direction.
 - Publish follow-up work within 6 months. One paper is a data point. Two papers is a direction. Three is a movement.
 - Get your students/collaborators to publish adjacent work. Cite each other genuinely.
 - Organize a workshop at a major conference. The workshop becomes the gathering point for the scene.
@@ -145,7 +145,7 @@ Great papers create a SCENE around them  --  a cluster of related work that cite
 
 ---
 
-## Dimension 5: Anti-Fragility  --  The Stress Test
+## Dimension 5: Anti-Fragility, The Stress Test
 
 Anti-fragile ideas get STRONGER when attacked. Fragile ideas need protection. You need to know which yours is BEFORE reviewers tell you.
 
@@ -169,7 +169,7 @@ If a single critique forces you to fundamentally rethink the idea, the idea was 
 
 ---
 
-## Dimension 6: Timing  --  The Zeitgeist Check
+## Dimension 6: Timing, The Zeitgeist Check
 
 Many great papers were published at EXACTLY the right moment. Not luck. READING.
 
@@ -177,9 +177,9 @@ Many great papers were published at EXACTLY the right moment. Not luck. READING.
 
 Before writing, answer:
 
-1. **"What are the 3 most cited papers in my subfield this year?"** Your paper should engage with them  --  extend, contradict, or reframe them.
+1. **"What are the 3 most cited papers in my subfield this year?"** Your paper should engage with them, extend, contradict, or reframe them.
 
-2. **"What question is everyone asking but nobody answering?"** The best time to publish is when the community is FRUSTRATED. Look for papers that end with "future work should..."  --  that future work is YOUR paper.
+2. **"What question is everyone asking but nobody answering?"** The best time to publish is when the community is FRUSTRATED. Look for papers that end with "future work should...", that future work is YOUR paper.
 
 3. **"What technology / dataset / event just made this possible?"** AlexNet worked because GPUs + ImageNet existed. ChatGPT worked because RLHF + instruct data existed. What just became possible that wasn't possible 12 months ago?
 
@@ -195,9 +195,9 @@ Before writing, answer:
 
 ---
 
-## Dimension 7: Voice  --  The Signature Protocol
+## Dimension 7: Voice, The Signature Protocol
 
-Every great paper has a recognizable voice. Not "active voice, short paragraphs"  --  that's technique. Voice is the UNIQUE way YOU think that permeates every sentence.
+Every great paper has a recognizable voice. Not "active voice, short paragraphs", that's technique. Voice is the UNIQUE way YOU think that permeates every sentence.
 
 ### The Voice Diagnostic
 

@@ -1,4 +1,4 @@
-# Impact  --  How To Make Any Document Unignorable
+# Impact, How To Make Any Document Unignorable
 
 ## Goal
 
@@ -10,13 +10,13 @@ This guide applies to EVERY format the skill covers. Research paper, grant propo
 
 **The worst sin is not being wrong. The worst sin is being forgettable.**
 
-A flawed but unforgettable document changes the world. A correct but boring document changes nothing. Reviewers, investors, readers  --  they read 50+ documents a week. Yours either HAUNTS them or vanishes. There is no middle ground.
+A flawed but unforgettable document changes the world. A correct but boring document changes nothing. Reviewers, investors, readers, they read 50+ documents a week. Yours either HAUNTS them or vanishes. There is no middle ground.
 
 ---
 
 ## Principle 1: Destroy a Worldview
 
-Every great document starts by identifying a belief the audience holds  --  and then proving it false.
+Every great document starts by identifying a belief the audience holds, and then proving it false.
 
 | Document Type | The Belief You Destroy | The New Belief You Install |
 |---|---|---|
@@ -39,12 +39,12 @@ Every great document is about ONE thing. Everything else is scaffolding.
 |---|---|
 | Shannon 1948 | Information can be measured mathematically. |
 | Bitcoin whitepaper | A peer-to-peer electronic cash system without trusted third parties. |
-| SICP (Abelson & Sussman) | A computer language is not just a way to instruct a computer  --  it is a novel formal medium for expressing ideas about methodology. |
+| SICP (Abelson & Sussman) | A computer language is not just a way to instruct a computer, it is a novel formal medium for expressing ideas about methodology. |
 | Airbnb seed deck | People will pay to sleep in strangers' homes if the experience feels safe and curated. |
 | NIH R01 grant | If we answer THIS question, everything in THIS field changes. |
 | Steve Jobs iPhone keynote | Your phone is broken. Here is what a phone should be. |
 
-**Test**: Can every section, every paragraph, every figure trace its lineage back to the ONE thing? If a section exists for any other reason (tradition, "reviewers expect it," "papers in this field always include X")  --  cut it or subordinate it to the ONE thing.
+**Test**: Can every section, every paragraph, every figure trace its lineage back to the ONE thing? If a section exists for any other reason (tradition, "reviewers expect it," "papers in this field always include X"), cut it or subordinate it to the ONE thing.
 
 ---
 
@@ -68,7 +68,7 @@ Bad documents say "Look what I did." Great documents say "Look what YOU can now 
 
 ## Principle 4: The Inevitability Arc
 
-Great documents feel INEVITABLE. Not "here is a thing we discovered" but "given what we know, this HAD to be true  --  and now that you've seen it, you realize it too."
+Great documents feel INEVITABLE. Not "here is a thing we discovered" but "given what we know, this HAD to be true, and now that you've seen it, you realize it too."
 
 ### The Arc Structure
 
@@ -127,7 +127,7 @@ The reader's attention is a depleting resource. Every paragraph that does not de
 
 ### The Density Test
 
-For each paragraph: "What does the reader know after reading this that they did not know before?" If the answer is "nothing" or "the same thing they learned from the previous paragraph"  --  delete it.
+For each paragraph: "What does the reader know after reading this that they did not know before?" If the answer is "nothing" or "the same thing they learned from the previous paragraph", delete it.
 
 ---
 
@@ -137,7 +137,7 @@ Most readers decide whether to engage in the first 30 seconds. If your opening d
 
 ### Opening Formulas by Format
 
-**Research Paper  --  Abstract, Sentence 1**
+**Research Paper, Abstract, Sentence 1**
 ```
 Bad:  "In this paper, we present a novel approach to..."
 Good: "Single-model AI coding assistants share a fundamental
@@ -146,7 +146,7 @@ Good: "Single-model AI coding assistants share a fundamental
 ```
 The good version states a PROBLEM that feels urgent. The bad version states a FACT that feels administrative.
 
-**Grant Proposal  --  First Paragraph**
+**Grant Proposal, First Paragraph**
 ```
 Bad:  "This proposal requests funding to investigate..."
 Good: "Every year, 50,000 patients die from [condition] because
@@ -156,7 +156,7 @@ Good: "Every year, 50,000 patients die from [condition] because
 ```
 The good version makes the reader feel the COST of not funding. The bad version is a formality.
 
-**White Paper  --  Executive Summary**
+**White Paper, Executive Summary**
 ```
 Bad:  "This white paper describes the architecture of..."
 Good: "The [industry] runs on infrastructure designed in 2005
@@ -166,7 +166,7 @@ Good: "The [industry] runs on infrastructure designed in 2005
 ```
 The good version creates a sense of OBSOLESCENCE. The bad version is a table of contents.
 
-**Talk  --  First Slide After Title**
+**Talk, First Slide After Title**
 ```
 Bad:  "Outline: 1. Motivation 2. Method 3. Results..."
 Good: [Single image showing the problem with one devastating
@@ -178,7 +178,7 @@ The good version creates EMOTION. The bad version is an agenda.
 
 ## Principle 8: The Call to Action
 
-Every document must end by telling the audience what to DO with what they just learned. Not "conclusions were drawn"  --  specific, actionable next steps.
+Every document must end by telling the audience what to DO with what they just learned. Not "conclusions were drawn", specific, actionable next steps.
 
 | Document Type | Call to Action |
 |---|---|
@@ -215,4 +215,4 @@ If any answer is blank, the document is not finished.
 - Principles 5-6 (Memorability, Density) shape HOW you write.
 - Principles 7-8 (Opening, Call to Action) shape your FIRST and LAST 30 seconds.
 - For research papers, run this AFTER `ideation.md` (idea quality) but BEFORE section writing.
-- For grants, pitches, and white papers, run this FIRST  --  before any template.
+- For grants, pitches, and white papers, run this FIRST, before any template.

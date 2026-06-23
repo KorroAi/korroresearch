@@ -8,7 +8,7 @@
 >
 > Gradient compression has emerged as the primary approach to this problem. Quantization methods like QSGD and TernGrad reduce gradient precision from 32-bit floating point to 8-bit or ternary representations, achieving 4x compression. Sparsification methods like Top-k and DGC transmit only the largest gradient entries, discarding the rest. While both families reduce bandwidth, they share a fundamental limitation: they are lossy. The information discarded during compression creates a discrepancy between the true gradient and the compressed signal, which accumulates over iterations and degrades final model accuracy. Prior work mitigates this with error feedback mechanisms that track compression residuals, but these add memory overhead and do not fully recover the accuracy gap.
 >
-> A less explored direction is whether lossless compression  --  which guarantees exact gradient reconstruction  --  can achieve competitive compression ratios. Information theory suggests most gradient tensors are highly compressible: their values cluster around zero with long-tailed distributions, making them ideal candidates for entropy coding and variable-length encoding. However, existing lossless schemes like fpzip and ZFP were designed for scientific simulation data and achieve only 1.3-1.5x compression on deep learning gradients because they apply uniform encoding strategies that ignore the high variance in sparsity and dynamic range across layers.
+> A less explored direction is whether lossless compression, which guarantees exact gradient reconstruction, can achieve competitive compression ratios. Information theory suggests most gradient tensors are highly compressible: their values cluster around zero with long-tailed distributions, making them ideal candidates for entropy coding and variable-length encoding. However, existing lossless schemes like fpzip and ZFP were designed for scientific simulation data and achieve only 1.3-1.5x compression on deep learning gradients because they apply uniform encoding strategies that ignore the high variance in sparsity and dynamic range across layers.
 >
 > In this paper, we introduce GradZip, a lossless gradient compression framework designed specifically for deep learning training. Our key insight is that gradient compressibility varies dramatically across layers: the first convolutional layer of a ResNet may have 40% sparsity and a dynamic range of 10^-5 to 0.1, while a middle batch normalization layer has 98% sparsity and a dynamic range of 10^-7 to 10^-3. Uniform encoding strategies leave most of this compressibility unexploited. GradZip addresses this with two techniques. First, a lightweight runtime profiler samples gradient statistics during a brief warmup phase (first 100 training steps), measuring per-tensor sparsity, dynamic range, and value distribution. Second, a variable-width encoding assigns each tensor a tailored quantization scheme: aggressive 2-bit encoding for sparse normalization layers, moderate 8-bit for intermediate activations, and lossless 16-bit for the few sensitive layers where precision matters most.
 >
@@ -35,8 +35,8 @@ fundamental limitation: they are lossy.
 ```
 This is Template B1 (existing task, existing methods). Structure:
 1. General approach: gradient compression
-2. First family: quantization (QSGD, TernGrad)  --  what they do and their limitation
-3. Second family: sparsification (Top-k, DGC)  --  what they do and their limitation
+2. First family: quantization (QSGD, TernGrad), what they do and their limitation
+3. Second family: sparsification (Top-k, DGC), what they do and their limitation
 4. Common failure: all lossy, information loss accumulates
 5. Transition to alternative: "A less explored direction is whether lossless compression..."
 
@@ -49,7 +49,7 @@ existing lossless schemes like fpzip and ZFP... achieve only 1.3-1.5x
 compression on deep learning gradients because they apply uniform
 encoding strategies.
 ```
-This bridges from "lossy is standard" to "lossless exists but is insufficient"  --  defining the exact gap GradZip fills. Existing lossless schemes are acknowledged and their limitation is technical ("uniform encoding ignoring cross-layer variance").
+This bridges from "lossy is standard" to "lossless exists but is insufficient", defining the exact gap GradZip fills. Existing lossless schemes are acknowledged and their limitation is technical ("uniform encoding ignoring cross-layer variance").
 
 ```
 [PART C: Our Pipeline]

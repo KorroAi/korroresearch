@@ -122,7 +122,7 @@ drop in performance, confirming its importance for [specific function].
 Best results in bold.
 ```
 
-## Anti-Patterns Gallery  --  What NOT to Do
+## Anti-Patterns Gallery, What NOT to Do
 
 ### Table Anti-Patterns
 
@@ -130,9 +130,9 @@ Best results in bold.
 |---|---|---|
 | Double rules (`\hline\hline`) | Creates a chunky, unprofessional look | Use `\toprule`, `\midrule`, `\bottomrule` |
 | Vertical lines (`\|`) in tables | Distracts from the data; looks like Excel, not a publication | Remove all vertical lines |
-| "±" without std dev explanation | "23.4 ± 1.2"  --  is that std dev? std error? CI? | Specify: "Mean ± Std Dev" in the caption |
-| No metric direction | "PSNR"  --  higher is better, but does a reader unfamiliar with the metric know? | "PSNR ↑" |
-| Unlabeled units | "Runtime: 120"  --  milliseconds? seconds? GPU-hours? | "Runtime (ms) ↓" |
+| "±" without std dev explanation | "23.4 ± 1.2", is that std dev? std error? CI? | Specify: "Mean ± Std Dev" in the caption |
+| No metric direction | "PSNR", higher is better, but does a reader unfamiliar with the metric know? | "PSNR ↑" |
+| Unlabeled units | "Runtime: 120", milliseconds? seconds? GPU-hours? | "Runtime (ms) ↓" |
 | Inconsistent decimal places | One row shows "23.4", next shows "25.71", next "24" | Pick a precision, apply to all |
 | Center-aligning text columns | Method names centered makes left-to-right scanning impossible | Left-align text columns, center numbers |
 | Crowded table | 10+ columns on a single page | Split into sub-tables with clear captions |
@@ -153,7 +153,7 @@ Best results in bold.
 | Unlabeled colorbar | Heatmap shows values but no one knows what they mean | Colorbar with units: "PSNR (dB)" |
 | 3D bar charts | Perspective distortion makes values impossible to compare accurately | 2D bars. Always. |
 
-### Before/After Example  --  Table
+### Before/After Example, Table
 
 ```
 BEFORE (anti-pattern):

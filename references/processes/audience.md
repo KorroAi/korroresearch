@@ -1,4 +1,4 @@
-# Audience Analysis  --  Who Reads This, And What Makes Them Say Yes?
+# Audience Analysis, Who Reads This, And What Makes Them Say Yes?
 
 ## Goal
 
@@ -6,7 +6,7 @@ Before writing a single word, understand who will read your document, what they 
 
 ## The Three Questions
 
-1. **Who** is the decision-maker? (Not "who reads it"  --  who DECIDES?)
+1. **Who** is the decision-maker? (Not "who reads it", who DECIDES?)
 2. **What** does this person believe that you must change?
 3. **What** makes them say yes? (And what makes them say no?)
 
@@ -83,7 +83,7 @@ For each audience, answer these before writing:
 ### 1. The Canonical Belief
 What is the single sentence that summarizes what this audience currently believes about your topic?
 
-*Example (conference paper on gradient compression)*: "The reviewer believes gradient compression is a solved problem  --  QSGD and Top-k are good enough, and lossless schemes are too slow to matter."
+*Example (conference paper on gradient compression)*: "The reviewer believes gradient compression is a solved problem, QSGD and Top-k are good enough, and lossless schemes are too slow to matter."
 
 ### 2. The Evidence They Would Accept
 What kind of evidence would change their mind?

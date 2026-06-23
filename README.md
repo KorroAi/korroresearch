@@ -13,7 +13,7 @@ KORRO Research is not a writing guide. It is a complete document production syst
 ## Quick Start
 
 ```bash
-# 1. Run the wizard  --  generates your document skeleton in 60 seconds
+# 1. Run the wizard, generates your document skeleton in 60 seconds
 python scripts/wizard.py
 
 # 2. Pick your path
@@ -142,7 +142,7 @@ The script tries two engines:
 2. **fpdf2** (pure Python, works everywhere) — automatic fallback, zero dependencies.
 
 ```bash
-# Always produces a PDF  --  auto-selects best available engine
+# Always produces a PDF, auto-selects best available engine
 python scripts/generate_pdf.py paper.md paper.pdf
 python scripts/generate_pdf.py paper.md paper.pdf --template single-column
 ```

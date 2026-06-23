@@ -1,8 +1,8 @@
-# Dossier  --  Your Complete Professional Package
+# Dossier, Your Complete Professional Package
 
 ## Goal
 
-A dossier is the complete package that makes you the obvious choice  --  for funding, for a job, for a speaking invitation, for a partnership. It's what you send when someone says "tell me more about what you do."
+A dossier is the complete package that makes you the obvious choice, for funding, for a job, for a speaking invitation, for a partnership. It's what you send when someone says "tell me more about what you do."
 
 A paper alone is not a dossier. A pitch deck alone is not a dossier. A dossier is the full arsenal, ready to deploy instantly.
 
@@ -52,7 +52,7 @@ A folder with:
 ### 7. The Social Proof Collection
 - Quotes from users, collaborators, or notable people.
 - Logos of institutions you've worked with or been featured in.
-- "As seen in"  --  magazines, podcasts, conferences.
+- "As seen in", magazines, podcasts, conferences.
 - Awards, grants, recognitions.
 
 ### 8. The Website or Landing Page

@@ -1,4 +1,4 @@
-# Ideation  --  Is Your Idea Paper-Worthy?
+# Ideation, Is Your Idea Paper-Worthy?
 
 ## Goal
 
@@ -6,7 +6,7 @@ Determine whether an idea deserves to become a document BEFORE writing begins. T
 
 ## Cross-Domain Note
 
-The examples in this guide are primarily from CS/ML  --  the domain with the most publicly-documented breakthrough patterns. The protocols are universal. A biology paper applying the Shannon filter: "CRISPR is a bacterial immune system that can be reprogrammed to edit any genome." A chemistry paper: "Molecules can be assembled like Lego blocks using click chemistry." A social science paper: "People do not make decisions rationally  --  they use heuristics that are predictable and systematically biased." The domain does not matter. The principles are the same.
+The examples in this guide are primarily from CS/ML: the domain with the most publicly-documented breakthrough patterns. The protocols are universal. A biology paper applying the Shannon filter: "CRISPR is a bacterial immune system that can be reprogrammed to edit any genome." A chemistry paper: "Molecules can be assembled like Lego blocks using click chemistry." A social science paper: "People do not make decisions rationally, they use heuristics that are predictable and systematically biased." The domain does not matter. The principles are the same.
 
 ## Core Principle
 
@@ -14,7 +14,7 @@ The examples in this guide are primarily from CS/ML  --  the domain with the mos
 
 ---
 
-## Protocol 1: The Shannon Filter  --  Three Tests
+## Protocol 1: The Shannon Filter, Three Tests
 
 If the idea fails any of these, do not write the paper. Go back to research.
 
@@ -42,17 +42,17 @@ Why has nobody done this before?
 | "We added more data / more parameters." | NOT paper-worthy. Engineering report, not research. |
 
 ### Test C: The Hindsight Inevitability
-In ten years, will people look back and say "of course  --  that had to be true"?
+In ten years, will people look back and say "of course, that had to be true"?
 
 - Shannon: "Of course information has a mathematical measure."
 - Vaswani: "Of course attention is sufficient without recurrence."
 - Goodfellow: "Of course competition can drive generation."
 
-If the answer is no  --  if people in ten years would say "that was a strange detour"  --  you have a novelty paper, not a classic. Novelties get published. Classics get cited for 30 years.
+If the answer is no, if people in ten years would say "that was a strange detour", you have a novelty paper, not a classic. Novelties get published. Classics get cited for 30 years.
 
 ---
 
-## Protocol 2: Paper-First  --  Write Before Experiments
+## Protocol 2: Paper-First, Write Before Experiments
 
 **Counter-intuitive and used by Hinton, Schmidhuber, LeCun, and others.**
 
@@ -81,7 +81,7 @@ Step 4: The remaining claims + verified results = your paper.
 
 ---
 
-## Protocol 3: The Territory Map  --  End With What You Don't Know
+## Protocol 3: The Territory Map, End With What You Don't Know
 
 Great papers open more questions than they close. A paper that answers everything is a dead end. A paper that opens 10 questions is cited for 30 years.
 
@@ -132,28 +132,28 @@ Abstraction: "Selectively focusing computational resources on the most relevant 
 
 | Domain | Translation | Cross-Pollination |
 |---|---|---|
-| Biology | Visual attention in primates  --  the fovea concentrates photoreceptors on the fixation point | Could attention be HARDWARE-EFFICIENT, like the fovea? Sparse computation only where it matters? |
-| Economics | Portfolio allocation  --  concentrate capital on highest-expected-return assets | Could attention weights be learned via REINFORCEMENT instead of gradient descent? |
-| Sociology | Dunbar's number  --  humans maintain ~150 stable relationships, prioritizing by frequency and recency | Could attention have a HARD CAP on active connections, enforced by sparsity? |
+| Biology | Visual attention in primates: the fovea concentrates photoreceptors on the fixation point | Could attention be HARDWARE-EFFICIENT, like the fovea? Sparse computation only where it matters? |
+| Economics | Portfolio allocation, concentrate capital on highest-expected-return assets | Could attention weights be learned via REINFORCEMENT instead of gradient descent? |
+| Sociology | Dunbar's number, humans maintain ~150 stable relationships, prioritizing by frequency and recency | Could attention have a HARD CAP on active connections, enforced by sparsity? |
 
 ---
 
-## Protocol 5: The Elegance Razor  --  Remove Before Adding
+## Protocol 5: The Elegance Razor, Remove Before Adding
 
 Shannon could have written 80 pages. He wrote 55. Every sentence that is not indispensable WEAKENS the paper.
 
 ### The Four-Pass Removal Protocol
 
-**Pass 1  --  Remove Redundancy**
+**Pass 1, Remove Redundancy**
 Delete every sentence that repeats information already conveyed. If Section 3.1 and Section 5.2 both explain the same mechanism, delete one. The reader is not stupid.
 
-**Pass 2  --  Remove Inferences**
-Delete every sentence the reader could infer from what you already said. "This demonstrates that our method is effective"  --  the numbers already demonstrated it. Trust the reader to draw conclusions.
+**Pass 2, Remove Inferences**
+Delete every sentence the reader could infer from what you already said. "This demonstrates that our method is effective": the numbers already demonstrated it. Trust the reader to draw conclusions.
 
-**Pass 3  --  Fuse Overlaps**
+**Pass 3, Fuse Overlaps**
 For every pair of sentences that convey overlapping information using different words, merge them into one sentence. Two weak sentences become one strong one.
 
-**Pass 4  --  Challenge Every Remainder**
+**Pass 4, Challenge Every Remainder**
 For each remaining sentence, ask: "If I delete this, does the paper become FALSE?" If the answer is no, delete it. A paper needs every sentence to be true; it does not need every sentence to exist.
 
 ### Target Length by Paper Type
@@ -166,7 +166,7 @@ For each remaining sentence, ask: "If I delete this, does the paper become FALSE
 
 ---
 
-## Protocol 6: The Anti-Paper  --  Write the Attack
+## Protocol 6: The Anti-Paper, Write the Attack
 
 Before finalizing, write a one-page abstract that argues AGAINST your paper. Be vicious. Be the reviewer who wants to reject you.
 
@@ -206,7 +206,7 @@ If a weakness appears in the anti-paper but NONE of these three responses appear
 
 ---
 
-## Protocol 7: The New Language  --  Name Your Concept
+## Protocol 7: The New Language, Name Your Concept
 
 "Attention." "GAN." "Dropout." "Information entropy." "Turing machine." "Transformer."
 
@@ -214,26 +214,26 @@ The greatest papers invent CONCEPTS, not just results. A well-chosen name is wor
 
 ### The Naming Test
 
-1. **Evocative**: Does the name create a mental image? "Dropout"  --  neurons literally drop out. "Attention"  --  the model pays attention. "Transformer"  --  it transforms representations.
+1. **Evocative**: Does the name create a mental image? "Dropout", neurons literally drop out. "Attention": the model pays attention. "Transformer", it transforms representations.
 
 2. **Memorable**: Can a colleague remember it after hearing it once? "Generative Adversarial Network" → GAN. Three letters, unforgettable.
 
-3. **Hard to replace**: If someone tries to avoid using your term, does the replacement sound worse? Nobody says "stochastic unit omission"  --  they say "dropout." Good names are linguistic monopolies.
+3. **Hard to replace**: If someone tries to avoid using your term, does the replacement sound worse? Nobody says "stochastic unit omission", they say "dropout." Good names are linguistic monopolies.
 
-4. **Self-describing**: Does the name hint at what it does? "Backpropagation"  --  propagating errors backward. "Convolution"  --  convolving a filter across the input.
+4. **Self-describing**: Does the name hint at what it does? "Backpropagation", propagating errors backward. "Convolution", convolving a filter across the input.
 
 ### Naming Anti-Patterns
 
 | Bad Name | Why It Failed | Better Name |
 |---|---|---|
-| "Residual Networks with Identity Mappings" | Descriptive but unmemorable, no image | "ResNet"  --  stuck immediately |
-| "Multi-Head Dot-Product Attention over Value Vectors" | Too technical, no image | "Attention"  --  the abstraction, not the implementation |
+| "Residual Networks with Identity Mappings" | Descriptive but unmemorable, no image | "ResNet", stuck immediately |
+| "Multi-Head Dot-Product Attention over Value Vectors" | Too technical, no image | "Attention": the abstraction, not the implementation |
 | "Stochastic Depth" | Evocative but never caught on because "Dropout" already owned the mental space | Pick a name that doesn't compete with an existing linguistic monopoly |
 | Any name starting with "A Novel..." | "Novel" is not part of the name, yet papers do this constantly | Just say the name. "We present GradZip." Not "We present a novel gradient compression framework called GradZip." |
 
 ### If You Cannot Name It
 
-If you genuinely cannot find a good name, your concept might not be distinct enough. Worthy concepts are easy to name because they FEEL like something. If your concept is "a modification to the training procedure that slightly improves convergence on some benchmarks"  --  the problem is not the name. The problem is the concept.
+If you genuinely cannot find a good name, your concept might not be distinct enough. Worthy concepts are easy to name because they FEEL like something. If your concept is "a modification to the training procedure that slightly improves convergence on some benchmarks": the problem is not the name. The problem is the concept.
 
 ---
 
@@ -274,7 +274,7 @@ If any field is blank, do not start writing. Return to research until it is fill
 ## Integration With the Rest of the Skill
 
 - After passing the Shannon Filter, proceed to `references/sections/abstract.md` to write the abstract.
-- For non-paper formats, load `references/processes/impact.md` next  --  then the format-specific guide.
+- For non-paper formats, load `references/processes/impact.md` next, then the format-specific guide.
 - Run Protocol 2 (Paper-First) before loading any experiments guide.
 - Run Protocol 4 (Cross-Domain Pollination) if your idea feels incremental.
 - Run Protocol 5 (Elegance Razor) after every full draft.

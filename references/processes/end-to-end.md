@@ -1,4 +1,4 @@
-# End-to-End Process  --  From Blank Page to Submit
+# End-to-End Process, From Blank Page to Submit
 
 ## Goal
 
@@ -16,7 +16,7 @@ A complete timeline and checklist for authors writing their first paper, grant, 
 - [ ] Share outline with co-authors. Align before writing.
 
 ### T-6 weeks: First Draft
-- [ ] Write Abstract first (`abstract.md`)  --  it forces clarity on the story.
+- [ ] Write Abstract first (`abstract.md`), it forces clarity on the story.
 - [ ] Write Introduction (`introduction.md`). This will be rewritten later; write it now anyway.
 - [ ] Write Method (`method.md`). Most factual section, easiest to write early.
 - [ ] Write Experiments plan (`experiments.md`). What claims need evidence? Run remaining experiments.
@@ -88,9 +88,9 @@ A complete timeline and checklist for authors writing their first paper, grant, 
 
 Before submitting, ensure three people have read the full document:
 
-1. **Domain expert**  --  Catches technical errors, missing baselines, related work gaps.
-2. **Intelligent non-expert**  --  Catches unclear writing, undefined terms, missing motivation.
-3. **The skeptic**  --  Actively tries to reject. Every weakness they find is a weakness reviewers will find.
+1. **Domain expert**, Catches technical errors, missing baselines, related work gaps.
+2. **Intelligent non-expert**, Catches unclear writing, undefined terms, missing motivation.
+3. **The skeptic**, Actively tries to reject. Every weakness they find is a weakness reviewers will find.
 
 If you cannot find three readers, you are not ready to submit.
 

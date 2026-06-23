@@ -1,4 +1,4 @@
-# Blog Post Format  --  Technical Essays People Actually Read
+# Blog Post Format, Technical Essays People Actually Read
 
 ## Goal
 

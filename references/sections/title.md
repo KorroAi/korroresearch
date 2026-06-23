@@ -13,8 +13,8 @@ States a counter-intuitive claim that demands explanation.
 |---|---|
 | "Attention Is All You Need" | States something that sounds impossible. Forces the reader to ask "how?" |
 | "ImageNet Classification with Deep Convolutional Neural Networks" | Not a provocation per se, but the combination "ImageNet" (known hard) + "Deep CNNs" (new at the time) created curiosity. |
-| "Deep Residual Learning for Image Recognition" | "Residual learning"  --  a new concept name that hints at the insight. |
-| "Generative Adversarial Nets" | "Adversarial" + "Generative"  --  two words that should not go together. The tension IS the title. |
+| "Deep Residual Learning for Image Recognition" | "Residual learning": a new concept name that hints at the insight. |
+| "Generative Adversarial Nets" | "Adversarial" + "Generative", two words that should not go together. The tension IS the title. |
 | "The End of History?" | (Fukuyama) A question that cannot be ignored. |
 
 **Use when**: Your core insight is genuinely surprising or counter-intuitive.
@@ -41,7 +41,7 @@ States exactly what was done with clinical precision. Works for incremental but 
 | "On Computable Numbers, with an Application to the Entscheidungsproblem" | Turing. Precise. Humble. World-changing. |
 | "Learning representations by back-propagating errors" | (Rumelhart, Hinton, Williams 1986) Describes exactly what the paper does. No hype. |
 
-**Use when**: The work is so significant that a humble title signals confidence. Do NOT use for incremental work  --  a humble title on an incremental paper guarantees it will be ignored.
+**Use when**: The work is so significant that a humble title signals confidence. Do NOT use for incremental work: a humble title on an incremental paper guarantees it will be ignored.
 
 ---
 
@@ -73,7 +73,7 @@ Send 3 candidate titles to 3 colleagues. Ask: "Which would you click on?" Do not
 Google your title (in quotes). If another paper has the same or similar title, change yours. A title collision signals that your contribution is not distinct.
 
 ### Step 5: Read it aloud.
-Does it sound natural? Does it have rhythm? "At-ten-tion Is All You Need"  --  four stressed syllables, perfect rhythm. Great titles are poems.
+Does it sound natural? Does it have rhythm? "At-ten-tion Is All You Need", four stressed syllables, perfect rhythm. Great titles are poems.
 
 ---
 

@@ -1,8 +1,8 @@
-# Recognition  --  The 12-Month Plan to Be Known
+# Recognition, The 12-Month Plan to Be Known
 
 ## Goal
 
-Not just to publish. To be recognized. Papers, conferences, magazine articles, investors  --  these are not separate goals. They are one integrated flywheel. This guide shows you how to spin it.
+Not just to publish. To be recognized. Papers, conferences, magazine articles, investors, these are not separate goals. They are one integrated flywheel. This guide shows you how to spin it.
 
 ## The Flywheel
 
@@ -60,7 +60,7 @@ Each output feeds the next. A paper gets you a talk. A talk gets you noticed by 
 
 ### Month 8: The Second Paper
 - [ ] You now have more data, more credibility, and more confidence.
-- [ ] Cite your own first paper. This is not vanity  --  it's building a research program.
+- [ ] Cite your own first paper. This is not vanity, it's building a research program.
 - [ ] The second paper should answer one of the "Open Problems" from the first.
 
 ---

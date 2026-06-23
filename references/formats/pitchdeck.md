@@ -1,4 +1,4 @@
-# Pitch Deck Format  --  Investor Decks That Get Funded
+# Pitch Deck Format, Investor Decks That Get Funded
 
 ## Goal
 
@@ -54,7 +54,7 @@ What does the user actually see?
 ### Slide 7: Traction
 Proof that people want this.
 - Revenue (if you have it), users, pilot customers, LOIs, waitlist signups.
-- Growth curve (even if small  --  direction matters more than magnitude).
+- Growth curve (even if small, direction matters more than magnitude).
 - Specific numbers, not "growing fast."
 
 ### Slide 8: Business Model

@@ -6,7 +6,7 @@ Generate submission-ready LaTeX for top ML and NLP conferences. Complements `lat
 
 - NeurIPS, ICML, ICLR (ML conferences)
 - ACL, EMNLP, NAACL (NLP conferences)
-- CVPR, ICCV, ECCV (vision conferences  --  similar to ICML style)
+- CVPR, ICCV, ECCV (vision conferences, similar to ICML style)
 - Any venue using their own `.sty` file (not IEEEtran)
 
 ## Key Differences from IEEE

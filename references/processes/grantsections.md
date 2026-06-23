@@ -1,4 +1,4 @@
-# Grant Proposal Sections  --  Beyond the Research Paper
+# Grant Proposal Sections, Beyond the Research Paper
 
 ## Goal
 

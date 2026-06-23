@@ -14,7 +14,7 @@ Each author must have contributed to ALL of:
 
 Contributors who do not meet all four criteria should be acknowledged, not listed as authors.
 
-### Author Order  --  Conventions by Field
+### Author Order, Conventions by Field
 
 Author order is the #1 source of conflict in multi-author papers. Agree BEFORE writing.
 
@@ -47,8 +47,8 @@ Document each author's role explicitly using the CRediT standard:
 | Supervision | Oversight and mentorship |
 | Validation | Verification of results and reproducibility |
 | Visualization | Preparation of figures, tables, and visual presentations |
-| Writing  --  Original Draft | Preparation of the initial draft |
-| Writing  --  Review & Editing | Critical review, commentary, and revision |
+| Writing, Original Draft | Preparation of the initial draft |
+| Writing, Review & Editing | Critical review, commentary, and revision |
 
 **Include in the paper** (many venues now require this):
 ```

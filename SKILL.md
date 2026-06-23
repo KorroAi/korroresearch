@@ -141,7 +141,7 @@ Q4: "Is my audience investors / executives / non-specialists?"
 ## Global Quality Rules
 
 ### Writing Mechanics (ALL formats)
-- Zero em dashes (`—`). Use " -- " (space, two hyphens, space) for parenthetical breaks. Run `scripts/clean_dashes.py` before finalizing.
+- Zero dashes of any kind. No em dashes, en dashes, or double hyphens. Use commas or colons instead. Run `scripts/clean_dashes.py` before finalizing.
 - Prefer active voice. "We propose" not "It is proposed."
 - Impact first: state what changed before explaining how.
 - One paragraph = one message. First sentence states the message.
@@ -289,7 +289,7 @@ Adapt to request complexity:
 - `scripts/semantic_scholar.py` — Find and cite papers: `python scripts/semantic_scholar.py search "query" --limit 5 --format apa`
 - `scripts/generate_figures.py` — Publication figures (bar, line, heatmap, ablation): `python scripts/generate_figures.py bar --data data.json --output figure.pdf`
 - `scripts/claim_checker.py` — Verify claims map to evidence: `python scripts/claim_checker.py paper.md [--strict] [--json]`
-- `scripts/clean_dashes.py` — Replace typographic dashes in prose: `python scripts/clean_dashes.py paper.md`
+- `scripts/clean_dashes.py` — Remove ALL dashes from prose (replaced with commas or colons): `python scripts/clean_dashes.py paper.md`
 
 ### Annotated Examples
 - `references/examples/abstracttemplateaannotated.md` — Abstract with line-by-line annotation

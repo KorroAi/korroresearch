@@ -1,12 +1,12 @@
-# Research Paper Pro  --  QuickStart
+# Research Paper Pro, QuickStart
 
 **38 reference files. You need the right ones for YOUR mission. Pick your path.**
 
 ---
 
-## PATH 0  --  I've never written anything. Where do I start?
+## PATH 0, I've never written anything. Where do I start?
 
-This is the most common question. You have an idea, a project, or a goal  --  but you've never published, never pitched, never spoken at a conference. Here is your exact path, no experience required.
+This is the most common question. You have an idea, a project, or a goal, but you've never published, never pitched, never spoken at a conference. Here is your exact path, no experience required.
 
 ```
 ┃  Step 1: python scripts/wizard.py
@@ -40,7 +40,7 @@ This is the most common question. You have an idea, a project, or a goal  --  bu
 
 ---
 
-## PATH 1  --  I want to publish a research paper
+## PATH 1, I want to publish a research paper
 
 ```
 ┃  python scripts/wizard.py --format paper
@@ -62,7 +62,7 @@ This is the most common question. You have an idea, a project, or a goal  --  bu
 
 ---
 
-## PATH 2  --  I want to raise money (pitch deck + investor dossier)
+## PATH 2, I want to raise money (pitch deck + investor dossier)
 
 ```
 ┃  python scripts/wizard.py --format pitch-deck
@@ -79,7 +79,7 @@ This is the most common question. You have an idea, a project, or a goal  --  bu
 
 ---
 
-## PATH 3  --  I want to write a book
+## PATH 3, I want to write a book
 
 ```
 ┃  python scripts/wizard.py --format book
@@ -95,7 +95,7 @@ This is the most common question. You have an idea, a project, or a goal  --  bu
 
 ---
 
-## PATH 4  --  I want to be recognized (conferences, magazines, investors)
+## PATH 4, I want to be recognized (conferences, magazines, investors)
 
 ```
 ┃  python scripts/wizard.py --format talk
@@ -117,9 +117,9 @@ This is the most common question. You have an idea, a project, or a goal  --  bu
 
 **Always run these three first, no matter what:**
 
-1. `python scripts/wizard.py`  --  generates your skeleton
-2. `references/processes/ideation.md`  --  the Shannon Filter
-3. `references/processes/impact.md`  --  the 8 unignorable principles
+1. `python scripts/wizard.py`, generates your skeleton
+2. `references/processes/ideation.md`: the Shannon Filter
+3. `references/processes/impact.md`: the 8 unignorable principles
 
 **Complete beginner?** PATH 0 above walks you through everything step by step.
 

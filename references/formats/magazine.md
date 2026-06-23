@@ -1,4 +1,4 @@
-# Magazine Article Format  --  Writing for General Audiences
+# Magazine Article Format, Writing for General Audiences
 
 ## Goal
 
@@ -13,7 +13,7 @@ Translate technical work into prose that a smart non-expert reads to the end. Ma
 - Trade publications (IEEE Spectrum, Communications of the ACM)
 - Your company blog when targeting non-technical decision-makers
 
-## Magazine vs Paper  --  The Difference
+## Magazine vs Paper, The Difference
 
 | Aspect | Research Paper | Magazine Article |
 |---|---|---|
@@ -31,7 +31,7 @@ Translate technical work into prose that a smart non-expert reads to the end. Ma
 
 ## The Magazine Article Structure
 
-### 1. The Hook (Paragraph 1  --  100 words)
+### 1. The Hook (Paragraph 1 to 100 words)
 Make the reader NEED to know more.
 ```
 Options:
@@ -47,26 +47,26 @@ Options:
   are zeros."
 ```
 
-### 2. The Context (2-3 paragraphs  --  300 words)
+### 2. The Context (2-3 paragraphs, 300 words)
 Why does this matter NOW?
 - What changed in the world that makes this important?
 - Who is affected?
 - What's at stake?
 
-### 3. The Deep Dive (4-6 paragraphs  --  800 words)
+### 3. The Deep Dive (4-6 paragraphs, 800 words)
 The technical content, explained through:
-- **Metaphors**: "Attention is like a spotlight  --  the model learns where to point it."
+- **Metaphors**: "Attention is like a spotlight: the model learns where to point it."
 - **Analogies**: "Training a large model is like conducting an orchestra where every musician needs to hear every other musician, and the sound takes longer to travel than the music."
 - **Step-by-step**: "First, we realized X. Then, we tried Y. That failed because Z. Finally, we discovered W."
 - **No equations**: Replace them with "roughly," "about," "imagine that..."
 
-### 4. The Human Element (2-3 paragraphs  --  300 words)
+### 4. The Human Element (2-3 paragraphs, 300 words)
 Who benefits? Who is affected?
 - A quote from a researcher or user.
 - A concrete example of what this enables.
 - A story about the discovery process.
 
-### 5. The Takeaway (1 paragraph  --  100 words)
+### 5. The Takeaway (1 paragraph, 100 words)
 What should the reader do, think, or question after reading?
 - One memorable sentence that captures the entire article.
 - A forward-looking statement: "If this works at scale..."

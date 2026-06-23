@@ -78,4 +78,4 @@ Every supplementary section must be referenced from the main paper:
 - [ ] Cross-references use exact section/table/figure labels
 - [ ] File size within venue limits (if any)
 - [ ] Anonymized if the main paper is under double-blind review
-- [ ] Code repository link included (anonymized if under review  --  use anonymous GitHub or zip upload)
+- [ ] Code repository link included (anonymized if under review, use anonymous GitHub or zip upload)

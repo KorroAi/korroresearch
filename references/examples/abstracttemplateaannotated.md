@@ -63,7 +63,7 @@ Role: States significance without overclaiming. "First practical" is a specific 
 
 ### Common Mistakes Avoided
 
-- Did NOT say "This paper proposes GradZip..." (redundant  --  the paper IS about GradZip)
+- Did NOT say "This paper proposes GradZip..." (redundant: the paper IS about GradZip)
 - Did NOT explain every implementation detail (profiler algorithm, encoding scheme)
 - Did NOT use "significantly" without numbers
 - Did NOT list contributions as bullet points
