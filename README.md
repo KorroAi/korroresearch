@@ -14,7 +14,7 @@ KORRO Research transforms blank-page paralysis into a finished document skeleton
 
 ## About
 
-**KORRO Research** is built and maintained by **Kevin** under the [KorroAi](https://github.com/KorroAi) organization. It transforms the academic and professional writing process from weeks of procrastination into a 60-second pipeline.
+**KORRO Research** is built and maintained by **Korrocorp** under the [KorroAi](https://github.com/KorroAi) organization. It transforms the academic and professional writing process from weeks of procrastination into a 60-second pipeline.
 
 **What it does**: An interactive wizard asks five questions about your idea, then generates a complete document skeleton with section prompts, writing tips, and a verification checklist. Six scripts handle everything else: claim-evidence checking, dash elimination, PDF generation, figure production, and citation formatting.
 
