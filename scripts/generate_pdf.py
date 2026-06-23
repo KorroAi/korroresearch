@@ -14,6 +14,7 @@ Usage:
 import sys
 import re
 import os
+import tempfile
 import argparse
 import subprocess
 from pathlib import Path
@@ -228,14 +229,80 @@ def _parse_markdown_blocks(md_text):
     return blocks
 
 
+def _register_unicode_font(pdf):
+    """Register a Unicode-capable TTF font for fpdf2. Falls back to built-in if unavailable."""
+    # Try common Unicode font paths
+    candidates = [
+        r'C:\Windows\Fonts\DejaVuSans.ttf',
+        r'C:\Windows\Fonts\DejaVuSerif.ttf',
+        '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',
+        '/System/Library/Fonts/Times.ttc',
+    ]
+    regular = bold = italic = bold_italic = None
+    for c in candidates:
+        p = Path(c)
+        if p.exists():
+            regular = str(p)
+            # Try companion files
+            d = p.parent
+            n = p.stem
+            for variant, suffix, style in [
+                ('Bold', '-Bold', 'B'),
+                ('Oblique', '-Oblique', 'I'),
+                ('BoldOblique', '-BoldOblique', 'BI'),
+            ]:
+                vpath = d / f'{n}{suffix}{p.suffix}'
+                if vpath.exists():
+                    if style == 'B': bold = str(vpath)
+                    elif style == 'I': italic = str(vpath)
+                    elif style == 'BI': bold_italic = str(vpath)
+            break
+
+    if regular:
+        pdf.add_font('Unicode', '', regular)
+        if bold: pdf.add_font('Unicode', 'B', bold)
+        if italic: pdf.add_font('Unicode', 'I', italic)
+        if bold_italic: pdf.add_font('Unicode', 'BI', bold_italic)
+        return 'Unicode'
+    return None  # Fallback to built-in Times (latin-1 only)
+
+
+def _clean_markdown_for_pdf(md_text):
+    """Remove dashes and problematic Unicode chars before PDF rendering."""
+    import subprocess
+    import tempfile
+    # Write to temp file, clean, read back
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.md', delete=False, encoding='utf-8') as f:
+        f.write(md_text)
+        tmp_in = f.name
+    tmp_out = tmp_in.replace('.md', '_clean.md')
+    clean_script = Path(__file__).resolve().parent / 'clean_dashes.py'
+    try:
+        subprocess.run([sys.executable, str(clean_script), tmp_in], check=True, capture_output=True)
+        with open(tmp_in, 'r', encoding='utf-8') as f:
+            cleaned = f.read()
+    except Exception:
+        cleaned = md_text  # if cleaning fails, use original
+    finally:
+        for p in [tmp_in, tmp_out]:
+            try: os.unlink(p)
+            except OSError: pass
+    return cleaned
+
+
 def _render_fpdf2(md_text, output_path):
     from fpdf import FPDF
+
+    # Auto-clean dashes and problematic Unicode before rendering
+    md_text = _clean_markdown_for_pdf(md_text)
 
     pdf = FPDF('P', 'mm', 'A4')
     pdf.set_auto_page_break(True, 22)
     pdf.set_margins(22, 22, 22)
     pdf.add_page()
 
+    # Try Unicode font first, fall back to Times
+    font_name = _register_unicode_font(pdf) or 'Times'
     page_w = pdf.w - pdf.l_margin - pdf.r_margin  # usable width
     blocks = _parse_markdown_blocks(md_text)
 
@@ -244,27 +311,27 @@ def _render_fpdf2(md_text, output_path):
         if block_type == 'heading':
             if meta == 1:
                 pdf.ln(4)
-                pdf.set_font('Times', 'B', 18)
+                pdf.set_font(font_name, 'B', 18)
                 pdf.multi_cell(page_w, 8, content, align='C')
                 pdf.ln(3)
             elif meta == 2:
                 pdf.ln(3)
-                pdf.set_font('Times', 'B', 13)
+                pdf.set_font(font_name, 'B', 13)
                 pdf.multi_cell(page_w, 6, content, align='L')
                 pdf.ln(2)
             elif meta == 3:
                 pdf.ln(2)
-                pdf.set_font('Times', 'BI', 11)
+                pdf.set_font(font_name, 'BI', 11)
                 pdf.multi_cell(page_w, 5.5, content, align='L')
                 pdf.ln(1)
             else:
                 pdf.ln(1)
-                pdf.set_font('Times', 'I', 10)
+                pdf.set_font(font_name, 'I', 10)
                 pdf.multi_cell(page_w, 5, content, align='L')
                 pdf.ln(1)
 
         elif block_type == 'paragraph':
-            pdf.set_font('Times', '', 10)
+            pdf.set_font(font_name, '', 10)
             pdf.multi_cell(page_w, 5, content, align='J')
             pdf.ln(2)
 
@@ -286,7 +353,7 @@ def _render_fpdf2(md_text, output_path):
             if total > page_w:
                 col_widths = [w * page_w / total for w in col_widths]
 
-            pdf.set_font('Times', 'B', 8)
+            pdf.set_font(font_name, 'B', 8)
             line_h = 5.5
 
             # Header
@@ -307,7 +374,7 @@ def _render_fpdf2(md_text, output_path):
             for ri, row in enumerate(rows):
                 if pdf.get_y() + line_h > pdf.h - pdf.b_margin:
                     pdf.add_page()
-                pdf.set_font('Times', '', 8)
+                pdf.set_font(font_name, '', 8)
                 for ci in range(min(len(row), ncols)):
                     w = col_widths[ci] if ci < ncols - 1 else page_w - sum(col_widths[:ci])
                     cell_text = row[ci][:60]
@@ -337,7 +404,7 @@ def _render_fpdf2(md_text, output_path):
             pdf.ln(2)
 
         elif block_type == 'list':
-            pdf.set_font('Times', '', 10)
+            pdf.set_font(font_name, '', 10)
             for item in content:
                 bullet = '\x95'
                 pdf.cell(6, 5, bullet, align='R')
@@ -346,7 +413,7 @@ def _render_fpdf2(md_text, output_path):
             pdf.ln(1)
 
         elif block_type == 'ordered_list':
-            pdf.set_font('Times', '', 10)
+            pdf.set_font(font_name, '', 10)
             for idx, item in enumerate(content, 1):
                 num = f'{idx}.'
                 pdf.cell(8, 5, num, align='R')
@@ -358,7 +425,7 @@ def _render_fpdf2(md_text, output_path):
     total_pages = pdf.page_no()
     for pg in range(1, total_pages + 1):
         pdf.page = pg
-        pdf.set_font('Times', '', 8)
+        pdf.set_font(font_name, '', 8)
         pdf.set_y(pdf.h - 14)
         pdf.cell(page_w, 4, str(pg), align='C')
 
