@@ -52,17 +52,29 @@ def safe_ask(prompt):
 
 # ── Formats ────────────────────────────────────────────────────
 
+# ── Format targets per type ─────────────────────────────────────
+# words_per_page = 280 (standard book 6x9) or 350 (8.5x11 article)
+# slide_words = speaker notes, ~60 words per minute spoken
+
 FORMATS = {
     "1": {
         "name": "Research Paper (Conference)",
         "key": "paper",
+        "page_target": "6 to 10 pages",
+        "word_target": "3,500 to 4,500 words",
         "sections": [
-            ("Abstract", "One paragraph: problem, why unsolved, your method, key result."),
-            ("Introduction", "Part A: What task and why it matters. Part B: Why existing methods fail (technical reasons). Part C: Your method and why it works."),
-            ("Related Work", "Group by approach. Each paragraph = one line of work + its limitation + your advantage."),
-            ("Method", "Overview first. Then each component: motivation -> design -> rationale. Reproducibility: hyperparameters, hardware, seeds."),
-            ("Experiments", "Q1: Better than baselines? Q2: Which modules matter (ablation)? Q3: How far does it generalize?"),
-            ("Conclusion", "Summary (no copy-paste). Limitations (honest). Future work (specific)."),
+            ("Abstract", "One paragraph: problem, why unsolved, your method, key result.",
+             120, 180),
+            ("Introduction", "Part A: What task and why it matters. Part B: Why existing methods fail (technical reasons). Part C: Your method and why it works.",
+             800, 1200),
+            ("Related Work", "Group by approach. Each paragraph = one line of work + its limitation + your advantage.",
+             400, 600),
+            ("Method", "Overview first. Then each component: motivation -> design -> rationale. Reproducibility: hyperparameters, hardware, seeds.",
+             800, 1200),
+            ("Experiments", "Q1: Better than baselines? Q2: Which modules matter (ablation)? Q3: How far does it generalize?",
+             800, 1200),
+            ("Conclusion", "Summary (no copy-paste). Limitations (honest). Future work (specific).",
+             300, 500),
         ],
         "next_steps": [
             "Load references/sections/abstract.md to write the abstract",
@@ -74,19 +86,33 @@ FORMATS = {
     "2": {
         "name": "Pitch Deck (Investor)",
         "key": "pitch",
+        "page_target": "12 slides",
+        "word_target": "~800 words (speaker notes)",
         "sections": [
-            ("Slide 1: One-Liner", "Company name + what you do in one sentence. Investor must understand in 5 seconds."),
-            ("Slide 2: The Problem", "Whose problem? How big? How painful? One stat + one quote."),
-            ("Slide 3: The Solution", "What you built. One screenshot. Three bullet points max."),
-            ("Slide 4: The Market", "TAM, SAM, SOM. Bottom-up calculation, not top-down."),
-            ("Slide 5: The Insight", "Why now? Why you? What do you know that nobody else knows?"),
-            ("Slide 6: The Product", "2-3 screenshots with captions. One feature per visual."),
-            ("Slide 7: Traction", "Revenue, users, pilots, LOIs, waitlist. Graph even if small."),
-            ("Slide 8: Business Model", "Pricing. Unit economics. Comparables."),
-            ("Slide 9: Competition", "2x2 matrix with you top-right. Honest about competitors."),
-            ("Slide 10: Team", "3-4 people. Photo + name + role + ONE relevant credential."),
-            ("Slide 11: The Ask", "Amount, use of funds, current commitments."),
-            ("Slide 12: The Vision", "If you win, what does the world look like? One sentence."),
+            ("Slide 1: One-Liner", "Company name + what you do in one sentence.",
+             10, 20),
+            ("Slide 2: The Problem", "Whose problem? How big? How painful? One stat + one quote.",
+             40, 80),
+            ("Slide 3: The Solution", "What you built. One screenshot. Three bullet points max.",
+             40, 80),
+            ("Slide 4: The Market", "TAM, SAM, SOM. Bottom-up calculation, not top-down.",
+             60, 100),
+            ("Slide 5: The Insight", "Why now? Why you? What do you know that nobody else knows?",
+             50, 100),
+            ("Slide 6: The Product", "2-3 screenshots with captions. One feature per visual.",
+             50, 80),
+            ("Slide 7: Traction", "Revenue, users, pilots, LOIs, waitlist. Graph even if small.",
+             60, 100),
+            ("Slide 8: Business Model", "Pricing. Unit economics. Comparables.",
+             50, 80),
+            ("Slide 9: Competition", "2x2 matrix with you top-right. Honest about competitors.",
+             50, 80),
+            ("Slide 10: Team", "3-4 people. Photo + name + role + ONE relevant credential.",
+             40, 60),
+            ("Slide 11: The Ask", "Amount, use of funds, current commitments.",
+             40, 80),
+            ("Slide 12: The Vision", "If you win, what does the world look like? One sentence.",
+             20, 40),
         ],
         "next_steps": [
             "Load references/formats/pitchdeck.md for detailed slide rules",
@@ -98,13 +124,21 @@ FORMATS = {
     "3": {
         "name": "Grant Proposal",
         "key": "grant",
+        "page_target": "5 to 15 pages",
+        "word_target": "4,000 to 8,000 words",
         "sections": [
-            ("Specific Aims (1 page)", "Para 1: The PROBLEM. Para 2: The APPROACH. Para 3: The IMPACT. Bold your hypothesis."),
-            ("Research Strategy", "Significance -> Innovation -> Approach. Preliminary results integrated into each aim."),
-            ("Preliminary Results", "For each: what you did, what you found, what it implies. Error bars mandatory."),
-            ("Budget Justification", "Personnel, equipment, travel, materials. Every item traced to an aim."),
-            ("Timeline & Milestones", "Quarter by quarter. One milestone per quarter. Every risk has mitigation."),
-            ("Broader Impact", "Scientific impact. Societal impact. Education. Open science commitment with license + timeline."),
+            ("Specific Aims (1 page)", "Para 1: The PROBLEM. Para 2: The APPROACH. Para 3: The IMPACT. Bold your hypothesis.",
+             350, 450),
+            ("Research Strategy", "Significance -> Innovation -> Approach. Preliminary results integrated into each aim.",
+             1200, 3000),
+            ("Preliminary Results", "For each: what you did, what you found, what it implies. Error bars mandatory.",
+             800, 1500),
+            ("Budget Justification", "Personnel, equipment, travel, materials. Every item traced to an aim.",
+             400, 800),
+            ("Timeline & Milestones", "Quarter by quarter. One milestone per quarter. Every risk has mitigation.",
+             400, 800),
+            ("Broader Impact", "Scientific impact. Societal impact. Education. Open science commitment with license + timeline.",
+             400, 800),
         ],
         "next_steps": [
             "Load references/processes/grantsections.md for detailed section rules",
@@ -116,13 +150,21 @@ FORMATS = {
     "4": {
         "name": "White Paper",
         "key": "whitepaper",
+        "page_target": "5 to 20 pages",
+        "word_target": "3,500 to 7,000 words",
         "sections": [
-            ("Executive Summary", "The crisis or opportunity. Your solution in one paragraph. The ONE thing the reader must remember."),
-            ("The Problem", "Quantify the pain. Show why current solutions are structurally broken."),
-            ("The Architecture", "Your solution, top-down. Diagrams. Not implementation details -- design principles."),
-            ("Migration Path", "How to get from current state to your architecture. Incremental steps. No rip-and-replace."),
-            ("Impact & ROI", "What changes if adopted? Cost savings, speed, capability. Quantified."),
-            ("Call to Action", "The first step the reader should take. Specific. Time-bound."),
+            ("Executive Summary", "The crisis or opportunity. Your solution in one paragraph. The ONE thing the reader must remember.",
+             200, 400),
+            ("The Problem", "Quantify the pain. Show why current solutions are structurally broken.",
+             600, 1200),
+            ("The Architecture", "Your solution, top-down. Diagrams. Not implementation details, design principles.",
+             1000, 2000),
+            ("Migration Path", "How to get from current state to your architecture. Incremental steps. No rip-and-replace.",
+             600, 1200),
+            ("Impact & ROI", "What changes if adopted? Cost savings, speed, capability. Quantified.",
+             500, 1000),
+            ("Call to Action", "The first step the reader should take. Specific. Time-bound.",
+             200, 400),
         ],
         "next_steps": [
             "Load references/processes/impact.md -- Principle 1 (destroy a worldview) is essential",
@@ -134,12 +176,19 @@ FORMATS = {
     "5": {
         "name": "Magazine / Trade Article",
         "key": "magazine",
+        "page_target": "2 to 4 magazine pages",
+        "word_target": "1,500 to 2,500 words",
         "sections": [
-            ("The Hook", "One paragraph that makes the reader NEED to know more. Anecdote, statistic, or provocation."),
-            ("The Context", "Why this matters NOW. What changed? What's at stake?"),
-            ("The Deep Dive", "The technical content, explained so a smart non-expert understands. Metaphors welcome. No equations."),
-            ("The Human Element", "Who benefits? Who is affected? A quote, a story, a concrete example."),
-            ("The Takeaway", "What should the reader do, think, or question after reading? One memorable sentence."),
+            ("The Hook", "One paragraph that makes the reader NEED to know more. Anecdote, statistic, or provocation.",
+             150, 300),
+            ("The Context", "Why this matters NOW. What changed? What's at stake?",
+             300, 500),
+            ("The Deep Dive", "The technical content, explained so a smart non-expert understands. Metaphors welcome. No equations.",
+             600, 1000),
+            ("The Human Element", "Who benefits? Who is affected? A quote, a story, a concrete example.",
+             300, 500),
+            ("The Takeaway", "What should the reader do, think, or question after reading? One memorable sentence.",
+             150, 200),
         ],
         "next_steps": [
             "Load references/formats/magazine.md for magazine-specific rules",
@@ -151,31 +200,62 @@ FORMATS = {
     "6": {
         "name": "Academic Book",
         "key": "book",
+        "page_target": "200 to 600 pages",
+        "word_target": "60,000 to 120,000 words",
         "sections": [
-            ("Preface", "Who is this book for? What will they be able to do after reading? Why you wrote it."),
-            ("Chapter 1: The World As You Know It", "Establish shared reality. The problems the reader faces daily."),
-            ("Chapter 2-N: The Journey", "Each chapter = one concept. Motivation -> mechanism -> application -> exercises."),
-            ("Final Chapter: The World As It Could Be", "Synthesis. What you can now build. Open problems."),
-            ("Appendices", "Reference material, derivations, datasets, further reading."),
+            ("Preface", "Who is this book for? What will they be able to do after reading? Why you wrote it.",
+             800, 1500),
+            ("Chapter 1: The World As You Know It", "Establish shared reality. The problems the reader faces daily. Foundation chapter: the current state of the field.",
+             4000, 8000),
+            ("Chapter 2: The Architecture", "Deep foundation. The core concepts the reader needs before the journey. Build mental models.",
+             4000, 8000),
+            ("Chapter 3: The Tension (Part 1)", "First dimension of the problem. What breaks? What doesn't make sense? Evidence + narrative.",
+             4000, 8000),
+            ("Chapter 4: The Tension (Part 2)", "Second dimension. Deepen the crisis. Case studies. Contradictions.",
+             4000, 8000),
+            ("Chapter 5: The Diagnosis", "Why things break. Root cause analysis. The core mechanism. This is the book's theoretical center.",
+             4000, 8000),
+            ("Chapter 6: The Resolution (Part 1)", "First pillar of the solution. Framework, method, or new approach. Motivation -> mechanism -> application.",
+             4000, 8000),
+            ("Chapter 7: The Resolution (Part 2)", "Second pillar. Extend the framework. Address edge cases. Show it generalizes.",
+             4000, 8000),
+            ("Chapter 8: The Resolution (Part 3)", "Third pillar if needed, or the counter-argument chapter. Address the strongest objections.",
+             4000, 8000),
+            ("Chapter 9: A Framework for Action", "From theory to practice. Guidelines, checklists, decision trees. What to DO with what you learned.",
+             4000, 8000),
+            ("Chapter 10: The World As It Could Be", "Synthesis. Map the territory ahead. Open problems. Policies. Research agenda. The call to action.",
+             4000, 8000),
+            ("Appendices", "Reference material, datasets, instruments, glossary, further reading, claim-evidence map.",
+             3000, 6000),
         ],
         "next_steps": [
             "Load references/processes/ideation.md -- Protocol 1 applies to books too",
             "Load references/processes/impact.md -- Principle 4 (inevitability arc) at chapter scale",
             "Load references/processes/coauthoring.md if multi-author",
             "Write Chapter 1 and the final chapter FIRST. Then fill in the middle.",
+            "Each chapter = 4,000-8,000 words. This is a 200-600 page book. Write accordingly.",
         ],
     },
     "7": {
         "name": "Technical Blog Post",
         "key": "blog",
+        "page_target": "5 to 10 minute read",
+        "word_target": "1,200 to 2,000 words",
         "sections": [
-            ("The Headline", "Specific, benefit-driven, not clickbait. Passes the 'would I click?' test."),
-            ("The Opening (3 sentences)", "Sentence 1: The problem. Sentence 2: The insight. Sentence 3: What you'll learn."),
-            ("The Problem Section", "What was broken? Quantify. Show a graph."),
-            ("The Solution Section", "Key insight + one diagram. Explained so a smart undergrad understands."),
-            ("The Results Section", "Before/after. Bold numbers. Graph that speaks for itself."),
-            ("The Code Section", "Runnable. Import statements included. One concept per code block."),
-            ("The Closing", "One-sentence summary. Link to code/paper. One question for comments."),
+            ("The Headline", "Specific, benefit-driven, not clickbait. Passes the 'would I click?' test.",
+             1, 1),
+            ("The Opening (3 sentences)", "Sentence 1: The problem. Sentence 2: The insight. Sentence 3: What you'll learn.",
+             80, 120),
+            ("The Problem Section", "What was broken? Quantify. Show a graph.",
+             200, 400),
+            ("The Solution Section", "Key insight + one diagram. Explained so a smart undergrad understands.",
+             300, 600),
+            ("The Results Section", "Before/after. Bold numbers. Graph that speaks for itself.",
+             200, 400),
+            ("The Code Section", "Runnable. Import statements included. One concept per code block.",
+             200, 400),
+            ("The Closing", "One-sentence summary. Link to code/paper. One question for comments.",
+             80, 120),
         ],
         "next_steps": [
             "Load references/formats/blogpost.md for detailed rules",
@@ -186,13 +266,21 @@ FORMATS = {
     "8": {
         "name": "Conference Talk / Keynote",
         "key": "talk",
+        "page_target": "15 slides / 15-minute talk",
+        "word_target": "~1,200 words (speaker notes)",
         "sections": [
-            ("Slide 1: The Hook", "One image + one devastating stat. 'This is what we're here to fix.'"),
-            ("Slides 2-4: The Problem", "Why existing solutions fail. Technical reasons, not complaints."),
-            ("Slides 5-8: The Method", "Key insight. One diagram that explains everything. Build up step by step."),
-            ("Slides 9-12: Results", "Before/after. Live demo if possible. Numbers in bold."),
-            ("Slides 13-14: Limitations + Future", "What we don't know yet. Where the field goes next."),
-            ("Slide 15: Thank You", "Contact info. Link to paper/code. One question for the audience."),
+            ("Slide 1: The Hook", "One image + one devastating stat.",
+             20, 40),
+            ("Slides 2-4: The Problem", "Why existing solutions fail. Technical reasons, not complaints.",
+             150, 250),
+            ("Slides 5-8: The Method", "Key insight. One diagram that explains everything. Build up step by step.",
+             250, 400),
+            ("Slides 9-12: Results", "Before/after. Live demo if possible. Numbers in bold.",
+             250, 400),
+            ("Slides 13-14: Limitations + Future", "What we don't know yet. Where the field goes next.",
+             100, 200),
+            ("Slide 15: Thank You", "Contact info. Link to paper/code. One question for the audience.",
+             20, 40),
         ],
         "next_steps": [
             "Load references/formats/presentation.md for Beamer/Reveal.js setup",
@@ -233,28 +321,49 @@ def resolve_format(value):
 def generate_skeleton(format_info, ideation):
     fmt_name = format_info["name"]
     sections = format_info["sections"]
+    page_target = format_info.get("page_target", "TBD")
+    word_target = format_info.get("word_target", "TBD")
     idea = ideation
 
     output = [f"# {idea.get('name') or 'UNTITLED'}", ""]
     output.append("<!-- Generated by KORRO Research Wizard -->")
     output.append(f"<!-- Format: {fmt_name} -->")
+    output.append(f"<!-- Target: {page_target} | ~{word_target} -->")
     output.append(f"<!-- Date: {datetime.now().strftime('%Y-%m-%d %H:%M')} -->")
     output.append(f"<!-- Insight: {idea.get('insight') or 'FILL IN'} -->")
     output.append("")
+    output.append(f"> **FORMAT TARGET**: {page_target}")
+    output.append(f"> **WORD COUNT**: {word_target}")
+    output.append(f"> **Sections**: {len(sections)}")
+    output.append("")
 
-    for section_title, section_prompt in sections:
+    total_min = 0
+    total_max = 0
+    for section_title, section_prompt, wmin, wmax in sections:
+        total_min += wmin
+        total_max += wmax
         output.append(f"## {section_title}")
         output.append("")
-        output.append(f"<!-- PROMPT: {section_prompt} -->")
-        output.append("<!-- TIP: Start by writing whatever comes to mind. Don't try to be perfect. -->")
-        output.append(f"<!-- TIP: If you're stuck, ask Claude: 'Help me write the {section_title} section. -->")
-        output.append(f"<!--       My topic is: {idea.get('insight', 'FILL IN')} -->")
-        output.append(f"<!--       The prompt for this section is: {section_prompt} -->")
-        output.append(f"<!--       Here's what I have so far: ...' -->")
+        output.append(f"> **Words**: {wmin} to {wmax}")
+        output.append(f"> **Prompt**: {section_prompt}")
         output.append("")
-        output.append("[START WRITING HERE -- replace this line]")
+        output.append(f"<!-- Write {wmin}-{wmax} words for this section. -->")
+        output.append("")
+        output.append("[START WRITING HERE]")
         output.append("")
 
+    output.append("---")
+    output.append("")
+    output.append("## TARGET SUMMARY")
+    output.append("")
+    output.append(f"| Metric | Target |")
+    output.append(f"|---|---|")
+    output.append(f"| Format | {fmt_name} |")
+    output.append(f"| Pages | {page_target} |")
+    output.append(f"| Words | {word_target} |")
+    output.append(f"| Section word range | {total_min:,} to {total_max:,} |")
+    output.append(f"| Sections | {len(sections)} |")
+    output.append("")
     output.append("---")
     output.append("")
     output.append("## IDEATION NOTES (delete before submitting)")
@@ -407,7 +516,8 @@ def main():
 
     # Step 4: Show what was generated
     star("DOCUMENT STRUCTURE")
-    for sec_title, _ in format_info["sections"]:
+    say(f"Target: {format_info.get('page_target', 'TBD')} | ~{format_info.get('word_target', 'TBD')}")
+    for sec_title, *_ in format_info["sections"]:
         arrow(sec_title)
     divider()
 
