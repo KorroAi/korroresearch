@@ -1,0 +1,431 @@
+#!/usr/bin/env python3
+"""
+KORRO Research -- Interactive Wizard
+
+One command. Answer questions. Get a complete document skeleton with
+section prompts, a checklist, and exact next steps.
+
+Usage:
+    python scripts/wizard.py
+    python scripts/wizard.py --format pitch-deck
+    python scripts/wizard.py --batch "My idea" "Why now" "Audience" "Worldview" "Name"
+    python scripts/wizard.py --format paper --batch "Insight" "Why now" "Reviewers" "Belief" "MyProject"
+    python scripts/wizard.py --help
+"""
+
+import sys
+import os
+import argparse
+from pathlib import Path
+from datetime import datetime
+
+SKILL_DIR = Path(__file__).resolve().parent.parent
+OUTPUT_DIR = SKILL_DIR / "output"
+
+# ── Helpers ────────────────────────────────────────────────────
+STYLE = {
+    "divider": "=" * 58,
+    "star": "*",
+    "arrow": "->",
+    "check": "[OK]",
+}
+
+def divider(): print(f"\n  {STYLE['divider']}")
+def gap(): print()
+def say(text): print(f"  {text}")
+def star(text): print(f"\n  {STYLE['star']} {text}")
+def check(text): print(f"    {STYLE['check']} {text}")
+def arrow(text): print(f"    {STYLE['arrow']} {text}")
+
+def safe_ask(prompt):
+    """Ask a question, handling EOFError (non-interactive mode)."""
+    try:
+        return input(f"  {prompt} ").strip()
+    except EOFError:
+        say("\n  [NON-INTERACTIVE MODE DETECTED]")
+        say("  Use --batch to skip prompts: python scripts/wizard.py --format paper --batch \"idea\" \"why\" \"audience\" \"worldview\" \"name\"")
+        sys.exit(1)
+    except KeyboardInterrupt:
+        say("\n\n  Interrupted. No file was generated.")
+        sys.exit(130)
+
+
+# ── Formats ────────────────────────────────────────────────────
+
+FORMATS = {
+    "1": {
+        "name": "Research Paper (Conference)",
+        "key": "paper",
+        "sections": [
+            ("Abstract", "One paragraph: problem, why unsolved, your method, key result."),
+            ("Introduction", "Part A: What task and why it matters. Part B: Why existing methods fail (technical reasons). Part C: Your method and why it works."),
+            ("Related Work", "Group by approach. Each paragraph = one line of work + its limitation + your advantage."),
+            ("Method", "Overview first. Then each component: motivation -> design -> rationale. Reproducibility: hyperparameters, hardware, seeds."),
+            ("Experiments", "Q1: Better than baselines? Q2: Which modules matter (ablation)? Q3: How far does it generalize?"),
+            ("Conclusion", "Summary (no copy-paste). Limitations (honest). Future work (specific)."),
+        ],
+        "next_steps": [
+            "Load references/sections/abstract.md to write the abstract",
+            "Load references/processes/ideation.md for the Shannon Filter",
+            "Load references/processes/impact.md for the unignorable document principles",
+            "Run: python scripts/claim_checker.py paper.md --strict",
+        ],
+    },
+    "2": {
+        "name": "Pitch Deck (Investor)",
+        "key": "pitch",
+        "sections": [
+            ("Slide 1: One-Liner", "Company name + what you do in one sentence. Investor must understand in 5 seconds."),
+            ("Slide 2: The Problem", "Whose problem? How big? How painful? One stat + one quote."),
+            ("Slide 3: The Solution", "What you built. One screenshot. Three bullet points max."),
+            ("Slide 4: The Market", "TAM, SAM, SOM. Bottom-up calculation, not top-down."),
+            ("Slide 5: The Insight", "Why now? Why you? What do you know that nobody else knows?"),
+            ("Slide 6: The Product", "2-3 screenshots with captions. One feature per visual."),
+            ("Slide 7: Traction", "Revenue, users, pilots, LOIs, waitlist. Graph even if small."),
+            ("Slide 8: Business Model", "Pricing. Unit economics. Comparables."),
+            ("Slide 9: Competition", "2x2 matrix with you top-right. Honest about competitors."),
+            ("Slide 10: Team", "3-4 people. Photo + name + role + ONE relevant credential."),
+            ("Slide 11: The Ask", "Amount, use of funds, current commitments."),
+            ("Slide 12: The Vision", "If you win, what does the world look like? One sentence."),
+        ],
+        "next_steps": [
+            "Load references/formats/pitchdeck.md for detailed slide rules",
+            "Load references/processes/impact.md -- Principle 7 (Opening) is critical for decks",
+            "Load references/processes/audience.md -- understand the investor mindset",
+            "Practice the 2-minute version. Then the 5-minute version.",
+        ],
+    },
+    "3": {
+        "name": "Grant Proposal",
+        "key": "grant",
+        "sections": [
+            ("Specific Aims (1 page)", "Para 1: The PROBLEM. Para 2: The APPROACH. Para 3: The IMPACT. Bold your hypothesis."),
+            ("Research Strategy", "Significance -> Innovation -> Approach. Preliminary results integrated into each aim."),
+            ("Preliminary Results", "For each: what you did, what you found, what it implies. Error bars mandatory."),
+            ("Budget Justification", "Personnel, equipment, travel, materials. Every item traced to an aim."),
+            ("Timeline & Milestones", "Quarter by quarter. One milestone per quarter. Every risk has mitigation."),
+            ("Broader Impact", "Scientific impact. Societal impact. Education. Open science commitment with license + timeline."),
+        ],
+        "next_steps": [
+            "Load references/processes/grantsections.md for detailed section rules",
+            "Load references/processes/impact.md -- Principle 3 (make the agency the hero)",
+            "Load references/processes/audience.md -- understand the grant panel mindset",
+            "Preliminary results must exist before writing. If you have none, stop and run experiments.",
+        ],
+    },
+    "4": {
+        "name": "White Paper",
+        "key": "whitepaper",
+        "sections": [
+            ("Executive Summary", "The crisis or opportunity. Your solution in one paragraph. The ONE thing the reader must remember."),
+            ("The Problem", "Quantify the pain. Show why current solutions are structurally broken."),
+            ("The Architecture", "Your solution, top-down. Diagrams. Not implementation details -- design principles."),
+            ("Migration Path", "How to get from current state to your architecture. Incremental steps. No rip-and-replace."),
+            ("Impact & ROI", "What changes if adopted? Cost savings, speed, capability. Quantified."),
+            ("Call to Action", "The first step the reader should take. Specific. Time-bound."),
+        ],
+        "next_steps": [
+            "Load references/processes/impact.md -- Principle 1 (destroy a worldview) is essential",
+            "Load references/processes/audience.md -- understand the decision-maker",
+            "Load references/formats/htmlpdf.md -- generate professional PDF",
+            "Run: python scripts/generate_pdf.py whitepaper.md whitepaper.pdf --template single-column",
+        ],
+    },
+    "5": {
+        "name": "Magazine / Trade Article",
+        "key": "magazine",
+        "sections": [
+            ("The Hook", "One paragraph that makes the reader NEED to know more. Anecdote, statistic, or provocation."),
+            ("The Context", "Why this matters NOW. What changed? What's at stake?"),
+            ("The Deep Dive", "The technical content, explained so a smart non-expert understands. Metaphors welcome. No equations."),
+            ("The Human Element", "Who benefits? Who is affected? A quote, a story, a concrete example."),
+            ("The Takeaway", "What should the reader do, think, or question after reading? One memorable sentence."),
+        ],
+        "next_steps": [
+            "Load references/formats/magazine.md for magazine-specific rules",
+            "Load references/processes/impact.md -- Principle 7 (opening) is everything",
+            "Study the target magazine's last 6 months of articles. Match their tone.",
+            "Magazine articles are PITCHED before they are written. Write a 3-sentence pitch first.",
+        ],
+    },
+    "6": {
+        "name": "Academic Book",
+        "key": "book",
+        "sections": [
+            ("Preface", "Who is this book for? What will they be able to do after reading? Why you wrote it."),
+            ("Chapter 1: The World As You Know It", "Establish shared reality. The problems the reader faces daily."),
+            ("Chapter 2-N: The Journey", "Each chapter = one concept. Motivation -> mechanism -> application -> exercises."),
+            ("Final Chapter: The World As It Could Be", "Synthesis. What you can now build. Open problems."),
+            ("Appendices", "Reference material, derivations, datasets, further reading."),
+        ],
+        "next_steps": [
+            "Load references/processes/ideation.md -- Protocol 1 applies to books too",
+            "Load references/processes/impact.md -- Principle 4 (inevitability arc) at chapter scale",
+            "Load references/processes/coauthoring.md if multi-author",
+            "Write Chapter 1 and the final chapter FIRST. Then fill in the middle.",
+        ],
+    },
+    "7": {
+        "name": "Technical Blog Post",
+        "key": "blog",
+        "sections": [
+            ("The Headline", "Specific, benefit-driven, not clickbait. Passes the 'would I click?' test."),
+            ("The Opening (3 sentences)", "Sentence 1: The problem. Sentence 2: The insight. Sentence 3: What you'll learn."),
+            ("The Problem Section", "What was broken? Quantify. Show a graph."),
+            ("The Solution Section", "Key insight + one diagram. Explained so a smart undergrad understands."),
+            ("The Results Section", "Before/after. Bold numbers. Graph that speaks for itself."),
+            ("The Code Section", "Runnable. Import statements included. One concept per code block."),
+            ("The Closing", "One-sentence summary. Link to code/paper. One question for comments."),
+        ],
+        "next_steps": [
+            "Load references/formats/blogpost.md for detailed rules",
+            "Load references/sections/title.md -- the headline IS the blog post",
+            "Write the tweet before the post. If the tweet doesn't work, the post won't either.",
+        ],
+    },
+    "8": {
+        "name": "Conference Talk / Keynote",
+        "key": "talk",
+        "sections": [
+            ("Slide 1: The Hook", "One image + one devastating stat. 'This is what we're here to fix.'"),
+            ("Slides 2-4: The Problem", "Why existing solutions fail. Technical reasons, not complaints."),
+            ("Slides 5-8: The Method", "Key insight. One diagram that explains everything. Build up step by step."),
+            ("Slides 9-12: Results", "Before/after. Live demo if possible. Numbers in bold."),
+            ("Slides 13-14: Limitations + Future", "What we don't know yet. Where the field goes next."),
+            ("Slide 15: Thank You", "Contact info. Link to paper/code. One question for the audience."),
+        ],
+        "next_steps": [
+            "Load references/formats/presentation.md for Beamer/Reveal.js setup",
+            "Load references/processes/impact.md -- Principle 5 (memorability hooks) is critical",
+            "Practice the 15-minute version. Then the 5-minute version. Then the 2-minute hallway version.",
+            "Answer questions BEFORE they're asked. Have backup slides for every anticipated question.",
+        ],
+    },
+}
+
+
+def resolve_format(value):
+    """Resolve a format by key, number, or name prefix. Returns (choice_key, format_info)."""
+    # By number
+    if value in FORMATS:
+        return value, FORMATS[value]
+
+    # By key
+    by_key = {v["key"]: (k, v) for k, v in FORMATS.items()}
+    if value in by_key:
+        return by_key[value]
+
+    # By name (case-insensitive prefix match)
+    value_lower = value.lower()
+    for k, v in FORMATS.items():
+        if value_lower in v["name"].lower():
+            return k, v
+
+    # Fallback: show available formats
+    print(f"  Unknown format: '{value}'. Available formats:", file=sys.stderr)
+    for k, v in FORMATS.items():
+        print(f"    [{k}] {v['name']}  (--format {v['key']})", file=sys.stderr)
+    sys.exit(1)
+
+
+# ── Generation ─────────────────────────────────────────────────
+
+def generate_skeleton(format_info, ideation):
+    fmt_name = format_info["name"]
+    sections = format_info["sections"]
+    idea = ideation
+
+    output = [f"# {idea.get('name') or 'UNTITLED'}", ""]
+    output.append("<!-- Generated by KORRO Research Wizard -->")
+    output.append(f"<!-- Format: {fmt_name} -->")
+    output.append(f"<!-- Date: {datetime.now().strftime('%Y-%m-%d %H:%M')} -->")
+    output.append(f"<!-- Insight: {idea.get('insight') or 'FILL IN'} -->")
+    output.append("")
+
+    for section_title, section_prompt in sections:
+        output.append(f"## {section_title}")
+        output.append("")
+        output.append(f"<!-- PROMPT: {section_prompt} -->")
+        output.append("<!-- TIP: Start by writing whatever comes to mind. Don't try to be perfect. -->")
+        output.append(f"<!-- TIP: If you're stuck, ask Claude: 'Help me write the {section_title} section. -->")
+        output.append(f"<!--       My topic is: {idea.get('insight', 'FILL IN')} -->")
+        output.append(f"<!--       The prompt for this section is: {section_prompt} -->")
+        output.append(f"<!--       Here's what I have so far: ...' -->")
+        output.append("")
+        output.append("[START WRITING HERE -- replace this line]")
+        output.append("")
+
+    output.append("---")
+    output.append("")
+    output.append("## IDEATION NOTES (delete before submitting)")
+    output.append("")
+    output.append(f"- **One-sentence insight**: {idea.get('insight') or 'NEEDS DEFINITION'}")
+    output.append(f"- **Why now**: {idea.get('why_now') or 'NEEDS DEFINITION'}")
+    output.append(f"- **Decision-maker**: {idea.get('audience') or 'NEEDS DEFINITION'}")
+    output.append(f"- **Worldview to destroy**: {idea.get('worldview') or 'NEEDS DEFINITION'}")
+    output.append(f"- **Name**: {idea.get('name') or 'NEEDS DEFINITION'}")
+    output.append("")
+
+    return "\n".join(output)
+
+
+def show_next_steps(format_info):
+    star("NEXT STEPS")
+    for step in format_info.get("next_steps", []):
+        check(step)
+    gap()
+
+
+# ── Main ────────────────────────────────────────────────────────
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="KORRO Research Wizard -- generate document skeletons",
+        add_help=False,
+    )
+    parser.add_argument("--help", action="store_true", help="Show this help")
+    parser.add_argument("--format", type=str, help="Format key (paper, pitch, grant, whitepaper, magazine, book, blog, talk)")
+    parser.add_argument("--batch", nargs=5, metavar=("INSIGHT", "WHY_NOW", "AUDIENCE", "WORLDVIEW", "NAME"),
+                        help="Non-interactive: provide all 5 ideation answers at once")
+
+    try:
+        args = parser.parse_args()
+    except SystemExit:
+        return 1
+
+    if args.help:
+        parser.print_help()
+        print("\nFormats:")
+        for k, v in FORMATS.items():
+            print(f"  [{k}] {v['name']}  (--format {v['key']})")
+        print("\nExamples:")
+        print("  python scripts/wizard.py")
+        print("  python scripts/wizard.py --format pitch")
+        print("  python scripts/wizard.py --format paper --batch 'My insight' 'Why now' 'Reviewers' 'Old belief' 'ProjectName'")
+        return 0
+
+    gap()
+    print("  " + "=" * 60)
+    print("  |      KORRO RESEARCH -- Interactive Wizard                |")
+    print("  |      One command. Answer questions. Get a document.     |")
+    print("  " + "=" * 60)
+
+    # Step 1: Choose format
+    if args.format:
+        _, format_info = resolve_format(args.format)
+    else:
+        star("CHOOSE YOUR FORMAT")
+        say("What are you creating today?")
+        say("  Beginner-friendly: [1] [2] [7]\n")
+        for key, fmt in FORMATS.items():
+            label = "[B]" if key in ("1", "2", "7") else "   "
+            say(f"  [{key}] {label} {fmt['name']}")
+        gap()
+        choice = safe_ask(f"Enter number (1-{len(FORMATS)}):") or "1"
+        _, format_info = resolve_format(choice)
+
+    divider()
+    star(f"SELECTED: {format_info['name']}")
+    say(f"Sections: {len(format_info['sections'])}")
+    divider()
+
+    # Step 2: Ideation
+    if args.batch:
+        ideation = {
+            "insight": args.batch[0],
+            "why_now": args.batch[1],
+            "audience": args.batch[2],
+            "worldview": args.batch[3],
+            "name": args.batch[4],
+        }
+        star("IDEATION (--batch mode)")
+        check(f"Insight: {ideation['insight'][:60]}...")
+        check(f"Why now: {ideation['why_now'][:60]}...")
+        check(f"Audience: {ideation['audience'][:60]}...")
+        check(f"Worldview: {ideation['worldview'][:60]}...")
+        check(f"Name: {ideation['name']}")
+    else:
+        star("IDEATION -- The Shannon Filter")
+        say("Don't worry if you don't have perfect answers. Type what you know.")
+        say("Type 'skip' on any question you're not ready for.\n")
+
+        say("Example: 'We built a system that cuts AI training costs by 60%.'")
+        say("Example: 'People will pay to sleep in strangers' homes if it feels safe.'")
+        insight = safe_ask("What's your ONE big idea? (one sentence, no jargon):")
+        gap()
+
+        say("Examples: 'Nobody thought to apply X to Y before.'")
+        say("          'The technology to do this didn't exist until last year.'")
+        say("          'I don't know yet -- that's what I need to figure out.'")
+        why_now = safe_ask("Why hasn't this been done before?")
+        gap()
+
+        say("Examples: 'Conference reviewers in machine learning.'")
+        say("          'A venture capitalist who invests in AI infrastructure.'")
+        say("          'The NSF grant panel.'")
+        audience = safe_ask("Who decides if this succeeds? (reviewer, investor, grant panel, etc.):")
+        gap()
+
+        say("Example: 'They believe X is already solved. I will show it is not.'")
+        say("Example: 'They think this market is too small. My data says otherwise.'")
+        say("(This is the hardest question. 'skip' is fine.)")
+        worldview = safe_ask("What belief does your audience hold that you will prove wrong?")
+        gap()
+
+        name = safe_ask("What is your project/method/company called? (or a working title):")
+
+        ideation = {
+            "insight": insight,
+            "why_now": why_now,
+            "audience": audience,
+            "worldview": worldview,
+            "name": name,
+        }
+
+    divider()
+
+    # Step 3: Generate
+    star("GENERATING DOCUMENT SKELETON")
+    skeleton = generate_skeleton(format_info, ideation)
+
+    try:
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    except OSError as e:
+        print(f"\n  Error: Cannot create output directory: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    out_path = OUTPUT_DIR / f"{format_info['key']}_draft_{datetime.now().strftime('%Y%m%d_%H%M')}.md"
+    try:
+        out_path.write_text(skeleton, encoding="utf-8")
+    except OSError as e:
+        print(f"\n  Error: Cannot write output file: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    check(f"Saved: {out_path}")
+    say(f"  {len(skeleton.splitlines())} lines generated")
+    divider()
+
+    # Step 4: Show what was generated
+    star("DOCUMENT STRUCTURE")
+    for sec_title, _ in format_info["sections"]:
+        arrow(sec_title)
+    divider()
+
+    # Step 5: Next steps
+    show_next_steps(format_info)
+
+    star("YOU ARE READY")
+    say("Open the generated file. Each section has prompts and tips in comments.")
+    say("New to this? Open QUICKSTART.md -> PATH 0. It walks you through everything.")
+    say("Start with the easiest section. Build momentum. You've got this.")
+    gap()
+
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt:
+        print("\n\n  Interrupted. No file was generated.")
+        sys.exit(130)
