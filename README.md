@@ -1,5 +1,7 @@
 # KORRO Research
 
+![MUE-X: Cross-modal agents with shared memory and zero-shot task transfer](assets/mue-x-illustration.png)
+
 **One command. Nine formats. Complete document production system.**
 
 ```bash
@@ -7,6 +9,14 @@ python scripts/wizard.py
 ```
 
 KORRO Research transforms blank-page paralysis into a finished document skeleton in 60 seconds. It is not a writing tips collection, it is a production pipeline: wizard → skeleton → write → verify → format → submit. Nine output formats, six hardened scripts, thirty-eight reference guides, zero excuses.
+
+---
+
+## About
+
+KORRO Research is a production-grade document generation system maintained by [KorroAi](https://github.com/KorroAi). It was built to solve a single problem: the gap between having an idea and having a submission-ready document is measured in weeks of procrastination, not hours of work. The system enforces rigorous quality standards — claim-evidence alignment, zero dashes, active voice, quantified claims — through automated verification scripts rather than wishful thinking.
+
+Every script has been hardened against edge cases. Every reference guide has been tested on real papers. The MUE-X example paper in this repository demonstrates the complete pipeline from blank page to publication-ready PDF.
 
 ---
 
@@ -329,8 +339,6 @@ All scripts use `argparse`. All have `--help`. All handle `KeyboardInterrupt` cl
 The repository includes a fully written research paper generated with KORRO Research:
 
 **[MUE-X: Multi-User Environment for Cross-Modal Agents with Shared Memory and Zero-Shot Task Transfer](references/examples/muex_paper.md)**
-
-![MUE-X Architecture](assets/mue-x-illustration.png)
 
 This paper demonstrates every principle and script in action:
 - Generated with `wizard.py --format paper --batch`
