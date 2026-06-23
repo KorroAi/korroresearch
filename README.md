@@ -14,9 +14,20 @@ KORRO Research transforms blank-page paralysis into a finished document skeleton
 
 ## About
 
-KORRO Research is a production-grade document generation system maintained by [KorroAi](https://github.com/KorroAi). It was built to solve a single problem: the gap between having an idea and having a submission-ready document is measured in weeks of procrastination, not hours of work. The system enforces rigorous quality standards — claim-evidence alignment, zero dashes, active voice, quantified claims — through automated verification scripts rather than wishful thinking.
+**KORRO Research** is built and maintained by **Kevin** under the [KorroAi](https://github.com/KorroAi) organization. It transforms the academic and professional writing process from weeks of procrastination into a 60-second pipeline.
 
-Every script has been hardened against edge cases. Every reference guide has been tested on real papers. The MUE-X example paper in this repository demonstrates the complete pipeline from blank page to publication-ready PDF.
+**What it does**: An interactive wizard asks five questions about your idea, then generates a complete document skeleton with section prompts, writing tips, and a verification checklist. Six scripts handle everything else: claim-evidence checking, dash elimination, PDF generation, figure production, and citation formatting.
+
+**By the numbers**:
+- 9 output formats (research paper, pitch deck, grant, white paper, magazine, book, blog, talk, thesis)
+- 6 hardened Python scripts (all with `--help`, zero known crashes)
+- 38 reference guides covering every section, process, and format
+- 4 citation styles (APA, IEEE, BibTeX, MLA)
+- 1 rule: zero dashes, commas and colons only
+
+**What makes it different**: KORRO Research does not give writing advice. It enforces quality automatically. `claim_checker.py` verifies that every claim maps to experimental evidence. `clean_dashes.py` eliminates every em dash, en dash, and double hyphen from your prose. `generate_pdf.py` produces submission-ready output with no manual formatting. The system treats writing as an engineering discipline, not an art.
+
+**License**: MIT — use it, fork it, ship it. See [LICENSE](LICENSE).
 
 ---
 

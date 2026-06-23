@@ -5,10 +5,6 @@
 <!-- Date: 2026-06-23 -->
 <!-- Insight: MUE-X: Multi-User Environment for Cross-modal AI agents with shared memory and zero-shot task transfer -->
 
-![MUE-X Architecture: Cross-modal agents sharing a neural memory bus](../../assets/mue-x-illustration.png)
-
-*Figure 1: MUE-X architecture. Heterogeneous agents (vision, language, structured action) encode experiences into a shared 512-dimensional latent space via contrastive learning. Any agent queries the memory bank at inference time to retrieve relevant cross-modal experiences, enabling zero-shot task transfer.*
-
 ## Abstract
 
 We introduce MUE-X, a multi-agent framework that achieves zero-shot task transfer across 18 unseen environments through a shared neural memory bus connecting heterogeneous agents. Current multi-agent systems train in isolation: a vision agent navigating a warehouse shares nothing with a language agent booking flights, even when both face analogous subtasks like pathfinding or constraint satisfaction. MUE-X solves this with two contributions. First, a modality-agnostic memory encoder projects agent experiences, whether pixels, text, or structured actions, into a unified latent space using contrastive learning across 2.1M cross-modal trajectory pairs. Second, a retrieval-augmented policy network queries this shared memory at inference time, retrieving relevant experiences from any agent regardless of modality. On the Cross-Agent Benchmark (CABench), MUE-X enables zero-shot transfer that improves success rates by 34.2% over single-agent baselines and reduces training samples needed for new tasks by 3.8x. Ablation studies confirm the memory bus contributes 28.1 points of the gain, and the system generalizes to held-out environments with only 4.2% performance degradation.
