@@ -45,47 +45,107 @@ except (ImportError, OSError):
 CSS = """
 @page {
     size: A4;
-    margin: 2.2cm 2cm 2.2cm 2cm;
-    @bottom-center { content: counter(page); font-family: 'Times New Roman', serif; font-size: 10pt; }
+    margin: 2.4cm 2.2cm 2.4cm 2.2cm;
+    @bottom-center { content: counter(page); font-family: 'Times New Roman', 'STIX Two Text', serif; font-size: 8.5pt; color: #555; }
 }
+@page:first { @bottom-center { content: none; } }
+
 body {
-    font-family: 'Times New Roman', 'STIX Two Text', serif;
+    font-family: 'Times New Roman', 'STIX Two Text', 'DejaVu Serif', Georgia, serif;
     font-size: 10pt; line-height: 1.45; color: #1a1a1a;
-    text-align: justify; hyphens: auto;
+    text-align: justify; hyphens: auto; widows: 2; orphans: 2;
 }
+
+/* ── Typography Hierarchy (3 sizes only: 16pt / 12pt / 10pt) ── */
+h1 {
+    font-size: 16pt; font-weight: bold; text-align: center;
+    margin-top: 0; margin-bottom: 0.5cm; column-span: all;
+    page-break-before: avoid; page-break-after: avoid;
+}
+h2 {
+    font-size: 12pt; font-weight: bold;
+    margin-top: 0.7cm; margin-bottom: 0.25cm;
+    page-break-after: avoid;
+}
+h3 {
+    font-size: 10pt; font-weight: bold; font-style: italic;
+    margin-top: 0.45cm; margin-bottom: 0.15cm;
+    page-break-after: avoid;
+}
+h4 {
+    font-size: 10pt; font-style: italic;
+    margin-top: 0.3cm; margin-bottom: 0.1cm;
+    page-break-after: avoid;
+}
+
+/* ── Body text ── */
+p {
+    margin: 0.15cm 0; text-indent: 0.45cm;
+    text-align: justify;
+}
+p:first-of-type, h2 + p, h3 + p, h4 + p, blockquote + p, hr + p {
+    text-indent: 0;
+}
+strong { font-weight: bold; }
+em { font-style: italic; }
+
+/* ── Layout helpers ── */
 .two-column { column-count: 2; column-gap: 0.8cm; column-fill: balance; }
-h1 { font-size: 16pt; text-align: center; margin-bottom: 0.3cm; column-span: all; font-weight: bold; }
-h2 { font-size: 12pt; margin-top: 0.6cm; margin-bottom: 0.2cm; font-weight: bold; }
-h3 { font-size: 10pt; font-style: italic; margin-top: 0.4cm; margin-bottom: 0.15cm; }
-h4 { font-size: 10pt; margin-top: 0.3cm; margin-bottom: 0.1cm; }
-p { margin: 0.15cm 0; text-indent: 0.4cm; }
-p:first-of-type { text-indent: 0; }
-.authors { text-align: center; font-size: 10pt; margin-bottom: 0.1cm; column-span: all; }
-.affiliations { text-align: center; font-size: 9pt; color: #555; margin-bottom: 0.4cm; column-span: all; }
-.abstract { font-size: 9pt; margin: 0.5cm 0; padding: 0.3cm 0; border-top: 1.5px solid #333; border-bottom: 1.5px solid #333; column-span: all; }
+.authors { text-align: center; font-size: 10pt; margin-bottom: 0.15cm; column-span: all; }
+.affiliations { text-align: center; font-size: 8.5pt; color: #555; margin-bottom: 0.5cm; column-span: all; }
+.abstract {
+    font-size: 9pt; line-height: 1.4;
+    margin: 0.5cm 0; padding: 0.35cm 0;
+    border-top: 1.5px solid #333; border-bottom: 1.5px solid #333;
+    column-span: all;
+}
 .abstract strong:first-child { font-size: 10pt; }
-table { border-collapse: collapse; margin: 0.3cm 0; font-size: 9pt; width: 100%; break-inside: avoid; }
-caption { font-weight: bold; margin-bottom: 0.1cm; text-align: left; font-size: 9pt; }
-thead { border-top: 2px solid #333; border-bottom: 1px solid #333; }
+
+/* ── Tables: booktabs style (horizontal rules only) ── */
+table {
+    border-collapse: collapse; margin: 0.35cm 0; font-size: 9pt;
+    width: 100%; break-inside: avoid;
+}
+caption {
+    font-weight: bold; margin-bottom: 0.12cm; text-align: left;
+    font-size: 8.5pt; font-style: italic;
+}
+thead { border-top: 2px solid #333; border-bottom: 1px solid #666; }
 tbody tr:last-child { border-bottom: 2px solid #333; }
-th, td { padding: 2px 6px; text-align: center; font-size: 9pt; }
+th, td { padding: 2.5px 6px; text-align: center; font-size: 9pt; }
 th { font-weight: bold; }
 td:first-child, th:first-child { text-align: left; }
-figure { margin: 0.4cm 0; text-align: center; break-inside: avoid; }
+
+/* ── Figures ── */
+figure { margin: 0.45cm 0; text-align: center; break-inside: avoid; }
 figure img { max-width: 100%; }
-figcaption { font-size: 9pt; text-align: left; margin-top: 0.1cm; }
-pre, code { font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 8pt; background: #f7f7f7; border-radius: 2px; }
-pre { padding: 0.2cm; break-inside: avoid; line-height: 1.3; }
+figcaption {
+    font-size: 8.5pt; font-style: italic; text-align: left;
+    margin-top: 0.1cm; color: #444;
+}
+
+/* ── Code ── */
+pre, code { font-family: 'Consolas', 'Courier New', 'DejaVu Sans Mono', monospace; font-size: 8pt; background: #f7f7f7; border-radius: 2px; }
+pre { padding: 0.25cm; break-inside: avoid; line-height: 1.3; }
 code { padding: 1px 3px; }
 pre code { padding: 0; background: none; }
-blockquote { margin: 0.3cm 0; padding: 0.1cm 0.5cm; border-left: 3px solid #ccc; font-style: italic; color: #444; }
-ol, ul { margin: 0.15cm 0; padding-left: 1.2em; }
-li { margin-bottom: 0.05cm; }
-.references { font-size: 9pt; }
+
+/* ── Blockquotes ── */
+blockquote { margin: 0.3cm 0; padding: 0.1cm 0.6cm; border-left: 3px solid #bbb; font-style: italic; color: #444; }
+
+/* ── Lists ── */
+ol, ul { margin: 0.15cm 0; padding-left: 1.3em; }
+li { margin-bottom: 0.06cm; }
+
+/* ── References ── */
+.references { font-size: 8.5pt; line-height: 1.4; }
 .references ol { padding-left: 1.5em; }
 .references li { margin-bottom: 0.1cm; }
-sup { font-size: 8pt; }
+
+/* ── Misc ── */
+sup { font-size: 7.5pt; }
 a { color: #2a5db0; }
+hr { border: none; border-top: 0.5px solid #ccc; margin: 0.5cm 0; }
 """
 
 
