@@ -15,12 +15,40 @@ Usage:
 
 import sys
 import os
+import re
 import argparse
 from pathlib import Path
 from datetime import datetime
 
 SKILL_DIR = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = SKILL_DIR / "output"
+
+# ── File naming ─────────────────────────────────────────────────
+
+def slugify(text):
+    """Convert a title or project name into a clean filename slug.
+
+    Rules:
+      - Lowercase
+      - Alphanumeric + hyphens only
+      - No leading/trailing hyphens
+      - Collapse consecutive hyphens
+      - Truncate to 60 chars max, break at word boundary
+      - Fallback: 'untitled' if empty after cleaning
+    """
+    if not text or text.strip().upper() in ("UNTITLED", "FILL IN", "NEEDS DEFINITION", ""):
+        return "untitled"
+    slug = text.lower().strip()
+    slug = re.sub(r"[^a-z0-9]+", "-", slug)
+    slug = slug.strip("-")
+    if len(slug) > 60:
+        slug = slug[:60].rstrip("-")
+        # try to break at a word boundary
+        last_hyphen = slug.rfind("-")
+        if last_hyphen > 20:
+            slug = slug[:last_hyphen]
+    return slug or "untitled"
+
 
 # ── Helpers ────────────────────────────────────────────────────
 STYLE = {
@@ -503,7 +531,10 @@ def main():
         print(f"\n  Error: Cannot create output directory: {e}", file=sys.stderr)
         sys.exit(1)
 
-    out_path = OUTPUT_DIR / f"{format_info['key']}_draft_{datetime.now().strftime('%Y%m%d_%H%M')}.md"
+    # Generate professional filename: {Title_Slug}_{format_key}_{YYYY-MM-DD}.md
+    doc_slug = slugify(ideation.get("name") or ideation.get("insight", ""))
+    date_stamp = datetime.now().strftime("%Y-%m-%d")
+    out_path = OUTPUT_DIR / f"{doc_slug}_{format_info['key']}_{date_stamp}.md"
     try:
         out_path.write_text(skeleton, encoding="utf-8")
     except OSError as e:

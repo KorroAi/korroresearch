@@ -27,6 +27,7 @@ Five pillars — format-agnostic, always apply:
 3. **Claim-evidence alignment** — Every claim must map to evidence. No orphan claims. No "could potentially."
 4. **Audience-first thinking** — Write for a skeptical reader who wants to reject/fund/ignore your document. Remove every excuse they could use.
 5. **Visual-first impression** — Figures, slides, and tables are consumed first. They must tell the story without reading the text.
+6. **Readability and fluidity** — Every sentence must be a pleasure to read. Run `references/doesmywritingflowsource.md` before finalizing. Good writing is not about complexity. It is about clarity, rhythm, and forward momentum.
 
 ---
 
@@ -79,8 +80,9 @@ Q4: "Is my audience investors / executives / non-specialists?"
 9. **Adversarial review** — `references/paperreview.md` — 5-dimension self-review.
 10. **Anti-paper test** — `references/processes/ideation.md` Protocol 6.
 11. **Claim-evidence check** — `python scripts/claim_checker.py paper.md --strict`
-12. **Clean dashes** — `python scripts/clean_dashes.py paper.md`
-13. **Generate output** — Format guide + corresponding script in `scripts/`.
+12. **Readability and fluidity check** — `references/doesmywritingflowsource.md` — Full readability diagnostic. Sentence rhythm. Active voice. Transition flow. Paragraph variety. Filler elimination. Read-aloud test.
+13. **Clean dashes** — `python scripts/clean_dashes.py paper.md`
+14. **Generate output** — Format guide + corresponding script in `scripts/`.
 
 ### Phase D — Mastery (the level above)
 
@@ -142,12 +144,23 @@ Q4: "Is my audience investors / executives / non-specialists?"
 
 ### Writing Mechanics (ALL formats)
 - Zero dashes of any kind. No em dashes, en dashes, or double hyphens. Use commas or colons instead. Run `scripts/clean_dashes.py` before finalizing.
-- Prefer active voice. "We propose" not "It is proposed."
+- Prefer active voice. "We propose" not "It is proposed." Active voice creates forward momentum.
 - Impact first: state what changed before explaining how.
 - One paragraph = one message. First sentence states the message.
 - Define all terms before using them. No forward references to unexplained concepts.
 - Maintain terminology stability across the entire document.
 - Sentence-to-sentence flow: cause, contrast, consequence, or refinement.
+
+### Readability and Fluidity (ALL formats — NON-NEGOTIABLE)
+The reader's attention is a depleting resource. Every sentence that is unpleasant to read steals attention from the next sentence. Run `references/doesmywritingflowsource.md` before finalizing any document.
+
+- **Sentence rhythm**: Vary sentence length. A short sentence (4-8 words) creates impact. A medium sentence (12-22 words) develops an idea. A long sentence (25-40 words) synthesizes and connects. Monotony kills reading. Three long sentences in a row = the reader's eyes glaze over. Two short sentences in a row = punch. Alternate deliberately.
+- **Active voice dominance**: At least 80% of sentences must use active voice. "We analyzed the data" not "The data was analyzed." Passive voice has its place (when the actor is unknown or irrelevant), but it should be the exception, not the default.
+- **Filler elimination**: Remove "It is worth noting that," "Interestingly," "In order to," "It should be noted that," "It is important to mention," "The fact that." These phrases add syllables and remove nothing.
+- **Concrete over abstract**: "The four-year-old stacking blocks" not "a young child engaging in constructive play." "Dopamine neurons fire in bursts" not "neurotransmitter release patterns exhibit phasic characteristics." Specific words create images. Abstract words create fog.
+- **Paragraph rhythm**: Open with a short, clear topic sentence. Develop the idea in 2-4 supporting sentences. Close with impact or a transition. A paragraph of 8+ sentences needs to earn every one of them.
+- **Read-aloud test**: Read every paragraph aloud. If you stumble, the reader will stumble. If you run out of breath, the sentence is too long. If it sounds like a robot wrote it, rewrite it.
+- **Transition craft**: Each sentence must connect to the previous one with a clear logical relationship. Cause. Contrast. Consequence. Refinement. Example. If the relationship is unclear, add an explicit transition word or restructure.
 
 ### Claims and Evidence (research papers, grants, white papers)
 - Every major claim must map to evidence (experiment, citation, or preliminary result).
