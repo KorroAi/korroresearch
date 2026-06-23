@@ -151,6 +151,8 @@ korroresearch/
 ├── requirements.txt               # Python dependencies
 ├── output/                        # Generated documents (gitignored except .gitkeep)
 │   └── .gitkeep
+├── assets/
+│   └── mue-x-illustration.png    # Example illustration
 ├── scripts/
 │   ├── wizard.py                  # Interactive onboarding wizard (0 → skeleton in 60s)
 │   ├── generate_pdf.py            # Markdown → publication PDF (weasyprint or fpdf2)
@@ -190,6 +192,7 @@ korroresearch/
     │   ├── blogpost.md            #   Technical blog posts, FAANG-style
     │   └── magazine.md            #   Nature, Wired, MIT Tech Review, The Atlantic
     ├── examples/                  # Annotated examples
+    │   ├── muex_paper.md           #   Complete MUE-X research paper (full example)
     │   ├── abstracttemplateaannotated.md
     │   └── introductionannotated.md
     ├── paperreview.md             # 5-dimension adversarial self-review
@@ -318,6 +321,22 @@ python scripts/wizard.py --help
 ```
 
 All scripts use `argparse`. All have `--help`. All handle `KeyboardInterrupt` cleanly. Exit codes: 0 = success, 1 = error, 130 = interrupted.
+
+---
+
+## Complete Example
+
+The repository includes a fully written research paper generated with KORRO Research:
+
+**[MUE-X: Multi-User Environment for Cross-Modal Agents with Shared Memory and Zero-Shot Task Transfer](references/examples/muex_paper.md)**
+
+![MUE-X Architecture](assets/mue-x-illustration.png)
+
+This paper demonstrates every principle and script in action:
+- Generated with `wizard.py --format paper --batch`
+- Claims verified with `claim_checker.py --strict` (33 claims, 0 needs_evidence)
+- Formatted as publication-ready PDF with `generate_pdf.py`
+- Zero dashes, verified with `clean_dashes.py --check`
 
 ---
 
