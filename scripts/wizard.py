@@ -398,8 +398,6 @@ def generate_skeleton(format_info, ideation):
     idea = ideation
 
     output = [f"# {idea.get('name') or 'UNTITLED'}", ""]
-    output.append(f"> {fmt_name} | Target: {page_target} | ~{word_target}")
-    output.append("")
 
     total_min = 0
     total_max = 0
@@ -407,10 +405,6 @@ def generate_skeleton(format_info, ideation):
         total_min += wmin
         total_max += wmax
         output.append(f"## {section_title}")
-        output.append("")
-        output.append(f"> **Prompt**: {section_prompt}")
-        output.append("")
-        output.append("[WRITE HERE]")
         output.append("")
 
     return "\n".join(output)
