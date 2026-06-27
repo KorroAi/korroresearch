@@ -7,9 +7,10 @@ section prompts, a checklist, and exact next steps.
 
 Usage:
     python scripts/wizard.py
-    python scripts/wizard.py --format pitch-deck
+    python scripts/wizard.py --format pitch-deck --vc yc
+    python scripts/wizard.py --format paper --venue neurips
+    python scripts/wizard.py --format grant --agency nsf
     python scripts/wizard.py --batch "My idea" "Why now" "Audience" "Worldview" "Name"
-    python scripts/wizard.py --format paper --batch "Insight" "Why now" "Reviewers" "Belief" "MyProject"
     python scripts/wizard.py --help
 """
 
@@ -108,6 +109,10 @@ FORMATS = {
             "Load references/sections/abstract.md to write the abstract",
             "Load references/processes/ideation.md for the Shannon Filter",
             "Load references/processes/impact.md for the unignorable document principles",
+            "Run: python scripts/math_generator.py paper.md --notation",
+            "Run: python scripts/hallucination_checker.py paper.md --mode classify",
+            "Run: python scripts/review_engine.py paper.md --venue <name>",
+            "Run: python scripts/reproducibility_checklist.py paper.md",
             "Run: python scripts/claim_checker.py paper.md --strict",
         ],
     },
@@ -144,9 +149,11 @@ FORMATS = {
         ],
         "next_steps": [
             "Load references/formats/pitchdeck.md for detailed slide rules",
+            "Load references/formats/vctemplates.md for VC-specific templates",
+            "Load references/formats/financialmodel.md for CAC, LTV, burn, runway",
+            "Load references/formats/competitivelandscape.md for competitor matrix",
             "Load references/processes/impact.md -- Principle 7 (Opening) is critical for decks",
-            "Load references/processes/audience.md -- understand the investor mindset",
-            "Practice the 2-minute version. Then the 5-minute version.",
+            "Run: python scripts/generate_figures.py --diagram architecture (no placeholders!)",
         ],
     },
     "3": {
@@ -259,9 +266,11 @@ FORMATS = {
         "next_steps": [
             "Load references/processes/ideation.md -- Protocol 1 applies to books too",
             "Load references/processes/impact.md -- Principle 4 (inevitability arc) at chapter scale",
-            "Load references/processes/coauthoring.md if multi-author",
+            "Load references/processes/bookconsistency.md -- CRITICAL for 100+ pages",
+            "Load references/formats/academicbook.md for structure",
             "Write Chapter 1 and the final chapter FIRST. Then fill in the middle.",
-            "Each chapter = 4,000-8,000 words. This is a 200-600 page book. Write accordingly.",
+            "Run: python scripts/consistency_engine.py ch*.md --batch after EVERY chapter",
+            "Each chapter = 4,000-8,000 words. This is a 200-600 page book.",
         ],
     },
     "7": {
@@ -315,6 +324,41 @@ FORMATS = {
             "Load references/processes/impact.md -- Principle 5 (memorability hooks) is critical",
             "Practice the 15-minute version. Then the 5-minute version. Then the 2-minute hallway version.",
             "Answer questions BEFORE they're asked. Have backup slides for every anticipated question.",
+        ],
+    },
+    "9": {
+        "name": "Thesis / Dissertation",
+        "key": "thesis",
+        "page_target": "100 to 300 pages",
+        "word_target": "40,000 to 80,000 words",
+        "sections": [
+            ("Abstract", "Problem, methodology, key results, contribution. 300 words max.",
+             200, 300),
+            ("Acknowledgements", "Advisor, committee, collaborators, funding sources, family.",
+             200, 400),
+            ("Chapter 1: Introduction", "Problem statement, motivation, contributions, thesis outline.",
+             2000, 4000),
+            ("Chapter 2: Literature Review", "Systematic review, taxonomy, gap analysis, table of prior work.",
+             4000, 8000),
+            ("Chapter 3: Method", "Deep methodology. Reproducible. Every equation defined. Algorithm boxes.",
+             4000, 8000),
+            ("Chapter 4: Experiments", "Setup, baselines, main results, ablations, error analysis.",
+             4000, 8000),
+            ("Chapter 5: Discussion", "What it means. Limitations. Comparison to prior work. Generalizability.",
+             3000, 6000),
+            ("Chapter 6: Conclusion", "Summary, contributions, future work, open problems.",
+             2000, 4000),
+            ("Appendices", "Proofs, hyperparameters, additional results, dataset details, code listing.",
+             4000, 10000),
+            ("Bibliography", "APA/IEEE/ACM/Chicago/Harvard/BibTeX. Auto-generated.",
+             2000, 4000),
+        ],
+        "next_steps": [
+            "Load references/formats/bibliographystyles.md for citation format",
+            "Load references/processes/bookconsistency.md -- CRITICAL for 100+ pages",
+            "Load references/formats/academicbook.md for front/back matter",
+            "Run: python scripts/consistency_engine.py ch*.md --batch after each chapter",
+            "Run: python scripts/hallucination_checker.py thesis.md before submission",
         ],
     },
 }
@@ -421,7 +465,17 @@ def main():
         add_help=False,
     )
     parser.add_argument("--help", action="store_true", help="Show this help")
-    parser.add_argument("--format", type=str, help="Format key (paper, pitch, grant, whitepaper, magazine, book, blog, talk)")
+    parser.add_argument("--format", type=str, help="Format key (paper, pitch, grant, whitepaper, magazine, book, blog, talk, thesis)")
+    parser.add_argument("--venue", type=str, choices=["neurips", "icml", "cvpr", "eccv", "iccv", "acl", "emnlp"],
+                       help="Target conference venue (for --format paper)")
+    parser.add_argument("--vc", type=str, choices=["yc", "sequoia", "a16z", "accel"],
+                       help="VC firm template (for --format pitch)")
+    parser.add_argument("--agency", type=str, choices=["nsf", "nih", "erc", "horizon", "darpa"],
+                       help="Funding agency template (for --format grant)")
+    parser.add_argument("--style", type=str, choices=["nature", "neurips", "mit", "google", "mckinsey", "yc", "nsf"],
+                       help="Style preset for tone/terminology/formatting")
+    parser.add_argument("--export", type=str, choices=["beamer", "pptx", "revealjs", "googleslides", "medium", "devto", "hashnode", "substack", "ghost"],
+                       help="Export target platform")
     parser.add_argument("--batch", nargs=5, metavar=("INSIGHT", "WHY_NOW", "AUDIENCE", "WORLDVIEW", "NAME"),
                         help="Non-interactive: provide all 5 ideation answers at once")
 
@@ -435,9 +489,17 @@ def main():
         print("\nFormats:")
         for k, v in FORMATS.items():
             print(f"  [{k}] {v['name']}  (--format {v['key']})")
+        print("\nOptions:")
+        print("  --venue    neurips|icml|cvpr|eccv|iccv|acl|emnlp  (paper)")
+        print("  --vc       yc|sequoia|a16z|accel                   (pitch)")
+        print("  --agency   nsf|nih|erc|horizon|darpa               (grant)")
+        print("  --style    nature|neurips|mit|google|mckinsey|yc|nsf")
+        print("  --export   beamer|pptx|revealjs|medium|devto|...")
         print("\nExamples:")
         print("  python scripts/wizard.py")
-        print("  python scripts/wizard.py --format pitch")
+        print("  python scripts/wizard.py --format paper --venue neurips")
+        print("  python scripts/wizard.py --format pitch --vc yc")
+        print("  python scripts/wizard.py --format grant --agency nsf")
         print("  python scripts/wizard.py --format paper --batch 'My insight' 'Why now' 'Reviewers' 'Old belief' 'ProjectName'")
         return 0
 

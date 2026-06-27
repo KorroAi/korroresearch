@@ -3,17 +3,36 @@ name: korroresearch
 description: Universal academic and professional writing skill. Use whenever the user needs to write, draft, revise, or format any of: research paper, academic article, conference paper, journal submission, grant proposal, white paper, literature review, academic book, thesis, dissertation, technical blog post, pitch deck, investor deck, conference talk, keynote, or poster. Triggers on: "research paper", "academic paper", "write a paper", "paper draft", "conference paper", "journal article", "scientific writing", "grant proposal", "literature review", "white paper", "academic book", "thesis", "dissertation", "publishable", "IEEE format", "ACM format", "NeurIPS format", "Nature style", "peer review", "camera ready", "arxiv", "rebuttal", "reviewer response", "pitch deck", "investor deck", "keynote", "technical blog", "blog post", "dissertation defense", "impact", "unignorable". Even if the user only mentions one section, use this skill: it contains section-specific templates and review checklists for every format.
 ---
 
-# KORRO Research
+# KORRO Research v2
 
-**One command. Answer questions. Get a complete document skeleton.**
+**Writing that ships. Zero hallucinations. Venue-ready.**
 
 ```bash
 python scripts/wizard.py
 ```
 
-9 formats. 38 reference guides. One wizard that takes you from blank page to complete skeleton in 60 seconds. Pick your path: Researcher. Founder. Author. Speaker.
+9 formats. 8 cross-cutting engines. 38+ reference guides. One wizard. From blank page to venue-compliant document that has been fact-checked, consistency-verified, and style-matched.
 
 **[QUICKSTART.md →](QUICKSTART.md)** — 4 paths, exact sequence of files to load + commands to run.
+
+---
+
+## Document Validity First
+
+The old model prioritized prose over truth. No more. Every document produced by this skill passes through 8 cross-cutting engines before it reaches your eyes. Writing cannot save a bad idea — and beautiful prose cannot save fabricated facts.
+
+**The contract**: No unsupported claim leaves this pipeline. No statistic without a source. No citation without verification. No terminology drift across sections. No format violation for the target venue.
+
+| Engine | Purpose | Script |
+|---|---|---|
+| Hallucination Detection | Classify every claim: verified/user-provided/hypothesis/speculative | `scripts/hallucination_checker.py` |
+| Fact Checking | Verify statistics, names, institutions, dates, datasets | `scripts/fact_checker.py` |
+| Source Manager | Generate BibTeX, DOI, arXiv, APA, IEEE, ACM references | `scripts/source_manager.py` |
+| Visual Generation | Architecture diagrams, charts, plots, infographics | `scripts/generate_figures.py` |
+| Consistency Engine | Track terminology, variables, citations, numbering globally | `scripts/consistency_engine.py` |
+| Style Engine | Switch between Nature, NeurIPS, MIT, McKinsey, YC, NSF styles | `scripts/style_engine.py` |
+| Review Engine | Flag unsupported claims, missing sections, weak transitions | `scripts/review_engine.py` |
+| Human-in-the-Loop | Outline approval, section-by-section, inline comments | (workflow, not script) |
 
 ---
 
@@ -21,7 +40,7 @@ python scripts/wizard.py
 
 A document is not a data dump. It is a persuasive argument that changes what the reader believes is possible. Every sentence must earn its place. This applies to research papers, grant proposals, white papers, books, theses, pitch decks, and talks equally.
 
-Five pillars — format-agnostic, always apply:
+Seven pillars — format-agnostic, always apply:
 1. **Idea quality before writing** — Writing cannot save a bad idea. Run `references/processes/ideation.md` first. If the idea fails the Shannon Filter, do not write.
 2. **Impact over information** — Being correct is not enough. You must be unignorable. Run `references/processes/impact.md` before any section writing.
 3. **Claim-evidence alignment** — Every claim must map to evidence. No orphan claims. No "could potentially."
@@ -68,27 +87,45 @@ Q4: "Is my audience investors / executives / non-specialists?"
 3. **Audience analysis** — `references/processes/audience.md`
    - Who is reading? What do they believe? What makes them say yes?
 4. **Choose format** — Use the decision tree above. Load the corresponding format guide.
+5. **Select style preset** — `python scripts/style_engine.py --preset <name>` — Nature, NeurIPS, MIT, Google, McKinsey, YC, NSF. Applies terminology, tone, and formatting rules globally.
 
 ### Phase B — Writing (iterative)
 
-5. **Define the story** — One paragraph. Problem, why unsolved, your answer, evidence.
-6. **Load the section guide** from `references/sections/` for the section you're writing.
-7. **Write paragraph by paragraph** — One message per paragraph, first sentence states it.
-8. **Reverse outline** after each section — Topic sentences must form a coherent mini-story.
+6. **Define the story** — One paragraph. Problem, why unsolved, your answer, evidence.
+7. **Mathematical content** — If paper/thesis: `python scripts/math_generator.py --document paper.md` — generates notation table, equation stubs, algorithm boxes.
+8. **Load the section guide** from `references/sections/` for the section you're writing.
+9. **Write paragraph by paragraph** — One message per paragraph, first sentence states it.
+10. **Generate figures and tables** — `python scripts/generate_figures.py` — architecture diagrams, charts, ablation tables, confusion matrices. No placeholder text.
+11. **Reverse outline** after each section — Topic sentences must form a coherent mini-story.
+12. **Run consistency check** after each section — `python scripts/consistency_engine.py paper.md` — tracks terminology, variables, citations.
 
 ### Phase C — Before Finalizing (MANDATORY)
 
-9. **Adversarial review** — `references/paperreview.md` — 5-dimension self-review.
-10. **Anti-paper test** — `references/processes/ideation.md` Protocol 6.
-11. **Claim-evidence check** — `python scripts/claim_checker.py paper.md --strict`
-12. **Readability and fluidity check** — `references/doesmywritingflowsource.md` — Full readability diagnostic.
-13. **Typography and layout check** — `references/typography-layout.md` — Font hierarchy. Spacing. Margins. Widows/orphans. Figure placement. Table formatting. Page geometry.
-14. **Clean dashes** — `python scripts/clean_dashes.py paper.md`
-14. **Generate output** — Format guide + corresponding script in `scripts/`.
+13. **Hallucination detection** — `python scripts/hallucination_checker.py paper.md --mode classify` — Every claim tagged: verified / user-provided / AI-hypothesis / speculative.
+14. **Fact check** — `python scripts/fact_checker.py paper.md --stats --names --institutions --benchmarks` — Verify all statistics, names, datasets.
+15. **Source verification** — `python scripts/source_manager.py paper.md --verify` — Every citation checked against DOI/arXiv/CrossRef.
+16. **Adversarial review** — `references/paperreview.md` — 5-dimension self-review.
+17. **Anti-paper test** — `references/processes/ideation.md` Protocol 6.
+18. **Review engine** — `python scripts/review_engine.py paper.md --venue neurips` — Flags: unsupported claims, missing sections, repeated paragraphs, weak transitions, vague novelty, missing ethics, missing limitations.
+19. **Claim-evidence check** — `python scripts/claim_checker.py paper.md --strict`
+20. **Reproducibility checklist** — `python scripts/reproducibility_checklist.py paper.md` — Dataset, code, hardware, training hours, random seed, license, ethics.
+21. **Readability and fluidity check** — `references/doesmywritingflowsource.md`
+22. **Typography and layout check** — `references/typography-layout.md`
+23. **Clean dashes** — `python scripts/clean_dashes.py paper.md`
+24. **Style compliance** — `python scripts/style_engine.py paper.md --check` — Verifies format compliance for target venue.
+25. **Generate output** — Format guide + corresponding script in `scripts/`.
 
 ### Phase D — Mastery (the level above)
 
-14. **Mastery diagnostic** — `references/processes/mastery.md` — 7 dimensions that separate good from unforgettable. Taste. Danger. Obsession. Network. Anti-fragility. Timing. Voice. Run this AFTER all writing is done. This is what transforms "accepted" into "cited for 30 years."
+26. **Mastery diagnostic** — `references/processes/mastery.md` — 7 dimensions. Taste. Danger. Obsession. Network. Anti-fragility. Timing. Voice.
+
+### Phase E — Human-in-the-Loop (professional workflow)
+
+27. **Outline approval** — Share outline before writing. Get sign-off on structure.
+28. **Section-by-section generation** — Write one section at a time. Get approval before moving on.
+29. **Inline comment resolution** — Each reviewer comment must be addressed or rebutted.
+30. **Version history** — Track `paper_v1.md`, `paper_v2.md`. Never overwrite without a backup.
+31. **Change tracking** — `diff paper_v1.md paper_v2.md` — Show exactly what changed between versions.
 
 ---
 
@@ -195,6 +232,7 @@ The reader's attention is a depleting resource. Every sentence that is unpleasan
 ## Document Types and Their Requirements
 
 ### Research Paper
+
 | Subtype | Pages | Key Requirement | Section Guides |
 |---|---|---|---|
 | Conference Paper | 6-10 | One clear contribution. Ablation mandatory. Teaser figure mandatory. | `abstract.md`, `introduction.md`, `method.md`, `experiments.md` |
@@ -202,19 +240,177 @@ The reader's attention is a depleting resource. Every sentence that is unpleasan
 | Workshop Paper | 4-6 | Work in progress OK. Smaller scope. Higher acceptance. | Same, relax ablation requirement |
 | Literature Review | 10-30 | Systematic search. Thematic synthesis. Gap identification. | `relatedwork.md` + `experiments.md` (for methodology) |
 
+**Conference-Specific Formatting** — Different conferences have different requirements. The wizard supports:
+
+| Conference | Template | Key Requirements |
+|---|---|---|
+| NeurIPS | `references/formats/latexmlm.md` | Anonymous, 9 pages, appendix after references |
+| ICML | `references/formats/latexmlm.md` | Anonymous, 8 pages, camera-ready separate |
+| CVPR/ECCV/ICCV | `references/formats/latexieee.md` | Non-anonymous, supplemental material, demo video |
+| ACL/EMNLP | `references/formats/latexmlm.md` | Anonymous, short (4pg) + long (8pg), ethics statement |
+
+**Version Support**: References version, Appendix version, Anonymous version, Camera-ready version — all from one source.
+
+**Mathematical Content** (non-negotiable for CS/ML papers):
+- Notation table generated by `python scripts/math_generator.py --notation`
+- Equation stubs with cross-references
+- Proofs (if theoretical)
+- Algorithm boxes and pseudo code
+- See `references/sections/math.md` for LaTeX conventions.
+
+**Automatic Figure Generation** — `scripts/generate_figures.py`:
+- Architecture diagram, training pipeline, loss graph
+- Benchmark comparison, attention visualization, confusion matrix, embedding visualization
+
+**Automatic Table Generation** — Ablation tables, hyperparameter tables, complexity tables, dataset tables, comparison tables
+
+**Reproducibility Checklist** — `scripts/reproducibility_checklist.py`:
+- Dataset (source, splits, preprocessing)
+- Code (repository, license)
+- Hardware (GPU model, CPU, RAM)
+- Training hours, random seed
+- Ethics statement, limitations
+
+**Related Work** — Must include:
+- Chronological comparison table
+- Taxonomy of approaches
+- Gap analysis (what prior work missed)
+- Table of prior work with columns: Method, Year, Key Metric, Limitation
+- See `references/sections/relatedwork.md`
+
+**Reviewer Checklist** — `python scripts/review_engine.py --venue <name>`:
+- Missing experiment? Missing baseline? Missing limitations?
+- Unsupported claim? Weak novelty? Formatting violation? |
+
 ### Professional
+
+#### Pitch Deck
+| Subtype | Length | Key Requirement | Process Guides |
+|---|---|---|---|
+| Pitch Deck | 10-15 slides | Story arc. Traction. The ask. Evidence over narrative. | `pitchdeck.md`, `impact.md` |
+
+**Financial Model** — `references/formats/financialmodel.md`:
+- CAC, LTV, Burn, Gross Margin, Runway, Revenue projections
+- Automatic spreadsheet generation
+
+**Competitive Landscape** — `references/formats/competitivelandscape.md`:
+- Automatic competitor matrix: name, funding, key feature, weakness
+- Covers: GitHub Copilot, Cursor, Windsurf, Codeium, Claude Code, Gemini Code Assist + your custom entries
+
+**Visual Generation** — The deck should never say "Insert screenshot":
+- UI mockups, workflow diagrams, dashboard mockups, pipeline diagrams
+- All generated automatically, no placeholder text
+
+**Market Validation** — Customer interviews, beta users, MRR, ARR, growth graph, waitlist numbers
+
+**VC-Specific Templates** — `references/formats/vctemplates.md`:
+- Y Combinator style, Sequoia style, a16z style, Accel style
+- Selectable in wizard: `python scripts/wizard.py --format pitch-deck --vc yc`
+
+#### Grant Proposal
+| Subtype | Length | Key Requirement | Process Guides |
+|---|---|---|---|
+| Grant Proposal | 5-15 pages | Problem significance. Preliminary results. Budget + timeline. | `grantsections.md`, `impact.md` |
+
+**Required Sections** (real grant reviewers expect these):
+- Risk analysis, milestones, deliverables, personnel
+- Budget justification, timeline, Gantt chart
+- IRB, data management plan, broader impacts, ethics
+- Letter of support, commercialization plan, technology readiness level
+
+**Agency-Specific Templates** — `references/formats/grantsagencies.md`:
+- NSF (intellectual merit + broader impacts)
+- NIH (specific aims + significance + approach)
+- ERC (groundbreaking nature + high-risk/high-gain)
+- Horizon Europe (impact + excellence + implementation)
+- DARPA (Heilmeier catechism: what are you trying to do? how is it done today? what's new? who cares?)
+
+#### White Paper
 | Subtype | Length | Key Requirement | Process Guides |
 |---|---|---|---|
 | White Paper | 5-20 pages | Executive summary first. Business impact + technical depth. | `impact.md`, `grantsections.md` |
-| Technical Blog Post | 800-3000 words | One insight per post. Accessible opening. Code examples. | `blogpost.md` |
-| Grant Proposal | 5-15 pages | Problem significance. Preliminary results. Budget + timeline. | `grantsections.md`, `impact.md` |
-| Pitch Deck | 10-15 slides | Story arc. Traction. The ask. | `pitchdeck.md`, `impact.md` |
 
-### Long-Form
+**Required Structure** — Executive summary, architecture, problem statement, migration strategy, case study, benchmarks, ROI, security, compliance, customer journey, call to action. Not a long blog post.
+
+**Style Templates** — `references/formats/whitepaperstyles.md`:
+- Gartner style (analyst, Magic Quadrant positioning)
+- Microsoft style (technical, developer-focused)
+- AWS style (product, service-oriented)
+- Google Cloud style (research-forward, data-driven)
+- Diagrams EVERYWHERE. No page without a visual.
+
+#### Technical Blog Post
 | Subtype | Length | Key Requirement | Process Guides |
 |---|---|---|---|
-| Academic Book | 200-600 pages | Chapter organization. Pedagogical progression. Exercises. | `coauthoring.md` (if multi-author) |
+| Technical Blog Post | 800-3000 words | One insight per post. Accessible opening. Code examples. | `blogpost.md` |
+
+**Enhancements** — `references/formats/blogexport.md`:
+- SEO optimization (meta description, keywords, headings)
+- Code syntax highlighting (Prism.js / highlight.js)
+- Interactive diagrams (Mermaid), code playgrounds
+- GitHub links, benchmarks, images
+- Dark/light mode, canonical URL, Schema.org metadata
+
+**Platform Exports** — Medium, Dev.to, Hashnode, Substack, Ghost — each with format-specific rules.
+
+### Long-Form
+
+#### Academic Book
+| Subtype | Length | Key Requirement | Process Guides |
+|---|---|---|---|
+| Academic Book | 200-600 pages | Chapter organization. Global consistency. No repetition. | `coauthoring.md`, `references/processes/bookconsistency.md` |
+
+**Structural Requirements** — `references/formats/academicbook.md`:
+- Automatic bibliography generation, index generation, glossary
+- Cross-references between chapters, footnotes
+- Exercises with solutions, appendices, further reading, revision history
+
+**Consistency Engine** (critical for 100+ pages):
+- Global memory: track every concept, term, variable, citation across all chapters
+- Automatic duplicate detection: find and merge repeated paragraphs
+- Chapter consistency: Chapter 5 must never contradict Chapter 2
+- Terminology tracking: same concept, same name, everywhere
+- Concept tracking: when concept X is introduced, all later references are consistent
+- See `references/processes/bookconsistency.md`
+
+#### Thesis / Dissertation
+| Subtype | Length | Key Requirement | Process Guides |
+|---|---|---|---|
 | Thesis / Dissertation | 100-300 pages | Establish expertise. Deep methodology. Comprehensive lit review. | All section guides + `end-to-end.md` |
+
+**Front Matter** — University template, acknowledgements, certificate, declaration, plagiarism page
+
+**Structural** — TOC, LOF (List of Figures), LOT (List of Tables), glossary, appendix, publication list
+
+**Bibliography Styles** — `references/formats/bibliographystyles.md`:
+- APA, IEEE, ACM, Chicago, Harvard, BibTeX — auto-generated
+
+**Chapter Consistency** — Same engine as Academic Book. Entity memory across 300 pages. Chapter 5 never contradicts Chapter 2.
+
+### Magazine Article
+| Subtype | Length | Key Requirement | Process Guides |
+|---|---|---|---|
+| Magazine Article | 1500-5000 words | Storytelling. Human angle. Visual pace. | `magazine.md`, `references/formats/magazinestyles.md` |
+
+**Elements** — Human interviews, quotes, sidebars, timelines, images, callout boxes, editor notes
+
+**Publication Styles** — `references/formats/magazinestyles.md`:
+- Nature (news & views, research highlights)
+- Quanta Magazine (explanatory depth, scientist profiles)
+- MIT Tech Review (business + tech intersection, TR35)
+- IEEE Spectrum (engineering depth, industry impact)
+- Wired (cultural angle, narrative journalism)
+
+### Conference Talk
+| Subtype | Length | Key Requirement | Process Guides |
+|---|---|---|---|
+| Conference Talk | 15-45 min | Live energy. Story arc. Memorable close. | `presentation.md`, `references/formats/talkexport.md` |
+
+**Content** — Actual slides (not outlines), speaker timing per slide, animations, presenter notes, live demo script, Q&A preparation, backup slides
+
+**Export Formats** — `references/formats/talkexport.md`:
+- PowerPoint (.pptx), Keynote (.key), Google Slides, Reveal.js, Beamer
+- Automatic slide generation with image generation, icons, animations, chart generation
 
 ---
 
@@ -263,11 +459,24 @@ Adapt to request complexity:
 ### Section Writing Guides
 - `references/sections/abstract.md` — 3 abstract templates
 - `references/sections/introduction.md` — 4 task intro versions, 3 challenge versions, 4 pipeline versions
-- `references/sections/relatedwork.md` — Thematic vs chronological, gap identification
+- `references/sections/relatedwork.md` — Thematic vs chronological, gap identification, comparison table
 - `references/sections/method.md` — Technical clarity, reproducibility, notation consistency
 - `references/sections/experiments.md` — 3 core questions, experiment planning, figure/table rules
 - `references/sections/conclusion.md` — Summary without copy-paste, limitations, future work
 - `references/sections/title.md` — **STRATEGIC.** The title is read 5x more than the abstract.
+- `references/sections/math.md` — LaTeX equation conventions, notation tables, algorithm boxes, pseudo-code
+
+### Cross-Cutting Engines
+
+| Engine | Reference | Script |
+|---|---|---|
+| Hallucination Detection | `references/engines/hallucination.md` | `scripts/hallucination_checker.py` |
+| Fact Checking | `references/engines/factcheck.md` | `scripts/fact_checker.py` |
+| Source Manager | `references/engines/sources.md` | `scripts/source_manager.py` |
+| Visual Generation | `references/engines/visuals.md` | `scripts/generate_figures.py` |
+| Consistency Engine | `references/engines/consistency.md` | `scripts/consistency_engine.py` |
+| Style Engine | `references/engines/style.md` | `scripts/style_engine.py` |
+| Review Engine | `references/engines/review.md` | `scripts/review_engine.py` |
 
 ### Meta-Workflow Guides
 - `references/processes/ideation.md` — **START HERE.** 7 protocols: Shannon filter, paper-first, territory map, cross-domain pollination, elegance razor, anti-paper, new language
@@ -282,6 +491,8 @@ Adapt to request complexity:
 - `references/processes/supplementary.md` — Supplementary material: content, organization, cross-referencing
 - `references/processes/coauthoring.md` — Multi-author workflows, CRediT taxonomy, conflict resolution
 - `references/processes/grantsections.md` — Grant-specific sections: budget, timeline, broader impact, preliminary results
+- `references/processes/bookconsistency.md` — **LONG-FORM.** Global memory, chapter consistency, duplicate detection, concept tracking
+- `references/processes/humanintheloop.md` — **PROFESSIONAL WORKFLOW.** Outline approval, section-by-section, version history, change tracking
 
 ### Quality Assurance
 - `references/paperreview.md` — 5-dimension adversarial self-review
@@ -290,22 +501,46 @@ Adapt to request complexity:
 - `references/typography-layout.md` — Typography, font hierarchy, spacing, page layout, widows/orphans
 
 ### Output Formats
-- `references/formats/latexieee.md` — IEEE/ACM conference-ready LaTeX
-- `references/formats/latexmlm.md` — NeurIPS/ICML/ACL conference-ready LaTeX
-- `references/formats/htmlpdf.md` — HTML + weasyprint for professional PDFs
-- `references/formats/docx.md` — python-docx for editable documents
-- `references/formats/presentation.md` — Beamer/Reveal.js for talks
-- `references/formats/pitchdeck.md` — Investor pitch deck structure and design
-- `references/formats/blogpost.md` — Technical blog posts, FAANG-style essays
-- `references/formats/magazine.md` — Magazine articles: Nature, Wired, MIT Tech Review, Quanta, The Atlantic
+
+| Format | Reference File | Best For |
+|---|---|---|
+| LaTeX (IEEE/ACM) | `references/formats/latexieee.md` | Conference/journal submission (CS, engineering) |
+| LaTeX (NeurIPS/ICML) | `references/formats/latexmlm.md` | ML conference submission |
+| HTML -> PDF | `references/formats/htmlpdf.md` | Preprints, white papers, web |
+| DOCX | `references/formats/docx.md` | Grant proposals, internal docs |
+| Beamer/Reveal.js | `references/formats/presentation.md` | Conference talks, seminars |
+| Pitch Deck | `references/formats/pitchdeck.md` | Investor decks, startup pitches |
+| Blog Post | `references/formats/blogpost.md` | Technical essays, FAANG-style blog posts |
+| Magazine Article | `references/formats/magazine.md` | Nature, Wired, MIT Tech Review, Quanta, The Atlantic |
+| Grant Proposal Sections | `references/processes/grantsections.md` | Budget, timeline, broader impact, preliminary results |
+
+**New Format Extensions:**
+- `references/formats/financialmodel.md` — CAC, LTV, burn, gross margin, runway, revenue projections
+- `references/formats/competitivelandscape.md` — Automatic competitor matrix generation
+- `references/formats/vctemplates.md` — YC, Sequoia, a16z, Accel pitch deck templates
+- `references/formats/grantsagencies.md` — NSF, NIH, ERC, Horizon, DARPA templates
+- `references/formats/whitepaperstyles.md` — Gartner, Microsoft, AWS, Google Cloud styles
+- `references/formats/magazinestyles.md` — Nature, Quanta, MIT Tech Review, IEEE Spectrum, Wired styles
+- `references/formats/talkexport.md` — PowerPoint, Keynote, Google Slides, Reveal.js, Beamer exports
+- `references/formats/blogexport.md` — Medium, Dev.to, Hashnode, Substack, Ghost platform exports
+- `references/formats/bibliographystyles.md` — APA, IEEE, ACM, Chicago, Harvard, BibTeX
+- `references/formats/academicbook.md` — Book structure, bibliography, index, glossary, cross-references
 
 ### Executable Scripts
-- `scripts/wizard.py` — **START HERE.** Interactive wizard: choose format, answer questions, get document skeleton: `python scripts/wizard.py` or `python scripts/wizard.py --format pitch-deck`
+- `scripts/wizard.py` — **START HERE.** Interactive wizard: `python scripts/wizard.py --format <name> [--vc yc|sequoia|a16z|accel] [--venue neurips|icml|cvpr|acl|emccv|iccv] [--agency nsf|nih|erc|horizon|darpa]`
 - `scripts/generate_pdf.py` — Markdown to publication PDF: `python scripts/generate_pdf.py paper.md paper.pdf [--template two-column|single-column]`
 - `scripts/semantic_scholar.py` — Find and cite papers: `python scripts/semantic_scholar.py search "query" --limit 5 --format apa`
-- `scripts/generate_figures.py` — Publication figures (bar, line, heatmap, ablation): `python scripts/generate_figures.py bar --data data.json --output figure.pdf`
+- `scripts/generate_figures.py` — Publication figures (bar, line, heatmap, ablation, architecture, pipeline, confusion)
 - `scripts/claim_checker.py` — Verify claims map to evidence: `python scripts/claim_checker.py paper.md [--strict] [--json]`
-- `scripts/clean_dashes.py` — Remove ALL dashes from prose (replaced with commas or colons): `python scripts/clean_dashes.py paper.md`
+- `scripts/clean_dashes.py` — Remove ALL dashes from prose: `python scripts/clean_dashes.py paper.md`
+- `scripts/hallucination_checker.py` — Classify every claim: verified/user-provided/hypothesis/speculative
+- `scripts/fact_checker.py` — Verify statistics, names, institutions, conferences, dates, datasets, benchmarks
+- `scripts/source_manager.py` — Generate BibTeX, DOI, arXiv, CrossRef, IEEE, APA, ACM references
+- `scripts/consistency_engine.py` — Track terminology, variables, citations, numbering across document
+- `scripts/style_engine.py` — Apply style presets: Nature, NeurIPS, MIT, Google, McKinsey, YC, NSF
+- `scripts/review_engine.py` — Flag unsupported claims, missing sections, repeated paragraphs, weak transitions
+- `scripts/math_generator.py` — Generate notation table, equation stubs, algorithm boxes, pseudo-code
+- `scripts/reproducibility_checklist.py` — Dataset, code, hardware, training hours, seed, license, ethics
 
 ### Annotated Examples
 - `references/examples/abstracttemplateaannotated.md` — Abstract with line-by-line annotation
