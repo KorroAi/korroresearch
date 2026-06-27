@@ -1,163 +1,115 @@
-# KORRO Research
+# KORRO Research v2
 
-![MUE-X: Cross-modal agents with shared memory and zero-shot task transfer](assets/mue-x-illustration.png)
-
-**One command. Nine formats. Complete document production system.**
+**From blank page to venue-compliant PDF. Zero hallucinations. Every claim verified.**
 
 ```bash
 python scripts/wizard.py
 ```
 
-KORRO Research transforms blank-page paralysis into a finished document skeleton in 60 seconds. It is not a writing tips collection, it is a production pipeline: wizard → skeleton → write → verify → format → submit. Nine output formats, six hardened scripts, thirty-eight reference guides, zero excuses.
+KORRO Research is a complete document production system. It does not give writing advice — it enforces quality automatically through eight cross-cutting engines that check every claim, verify every fact, track every term, and match every format before a single page leaves the pipeline. Nine output formats. Fourteen scripts. Fifty-plus reference guides. One command.
 
 ---
 
-## About
+## Why KORRO Research
 
-**KORRO Research** is built and maintained by **Korrocorp** under the [KorroAi](https://github.com/KorroAi) organization. It transforms the academic and professional writing process from weeks of procrastination into a 60-second pipeline.
+Most writing tools help you write faster. KORRO Research helps you write correctly.
 
-**What it does**: An interactive wizard asks five questions about your idea, then generates a complete document skeleton with section prompts, writing tips, and a verification checklist. Six scripts handle everything else: claim-evidence checking, dash elimination, PDF generation, figure production, and citation formatting.
-
-**By the numbers**:
-- 9 output formats (research paper, pitch deck, grant, white paper, magazine, book, blog, talk, thesis)
-- 6 hardened Python scripts (all with `--help`, zero known crashes)
-- 38 reference guides covering every section, process, and format
-- 4 citation styles (APA, IEEE, BibTeX, MLA)
-- 1 rule: zero dashes, commas and colons only
-
-**What makes it different**: KORRO Research does not give writing advice. It enforces quality automatically. `claim_checker.py` verifies that every claim maps to experimental evidence. `clean_dashes.py` eliminates every em dash, en dash, and double hyphen from your prose. `generate_pdf.py` produces submission-ready output with no manual formatting. The system treats writing as an engineering discipline, not an art.
-
-**License**: MIT — use it, fork it, ship it. See [LICENSE](LICENSE).
-
----
-
-## What This Is
-
-You have an idea. You need a research paper, a pitch deck, a grant proposal, or a white paper. You open a blank document. Two hours later, you have written and deleted the same three sentences seventeen times.
-
-KORRO Research eliminates this. The wizard asks five questions about your idea, then generates a complete document skeleton with section prompts, writing tips, and a checklist. Each section tells you exactly what to write. Each prompt includes examples of what good looks like. You replace placeholders with your content, run the verification scripts, and you are done.
+| Problem | KORRO Research Solution |
+|---|---|
+| AI-generated papers contain fabricated statistics | `hallucination_checker.py` classifies every claim as verified, user-provided, hypothesis, or speculative |
+| Citations don't match references | `source_manager.py` generates BibTeX, APA, IEEE, ACM, DOI — all verified against CrossRef and arXiv |
+| Terminology drifts across chapters | `consistency_engine.py` tracks every term, variable, citation, and abbreviation globally |
+| Section titles land alone at page bottom | `generate_pdf.py` enforces orphan heading prevention with automatic page breaks |
+| Documents look like Word defaults | `typography-layout.md` enforces 13 typography rules including font hierarchy, spacing, widows/orphans |
+| Venue requirements missed | `review_engine.py` checks NeurIPS/ICML/CVPR/ACL compliance before export |
+| No reproducibility information | `reproducibility_checklist.py` verifies dataset, code, hardware, seeds, license, ethics |
+| Claims without evidence survive editing | `claim_checker.py` maps every claim to experimental evidence |
 
 ---
 
 ## Formats
 
-| # | Format | Use Case | Sections | Output |
-|---|---|---|---|---|
-| 1 | Research Paper (Conference) | NeurIPS, ICML, ACL, CVPR, IEEE, ACM | Abstract, Introduction, Related Work, Method, Experiments, Conclusion | LaTeX or PDF |
-| 2 | Pitch Deck | Seed to Series A fundraising | 12 slides: One-Liner through The Vision | PDF slide deck |
-| 3 | Grant Proposal | NSF, ERC, NIH, Horizon Europe | Specific Aims, Research Strategy, Preliminary Results, Budget, Timeline, Broader Impact | PDF or DOCX |
-| 4 | White Paper | Architecture vision, thought leadership | Executive Summary, Problem, Architecture, Migration Path, ROI, Call to Action | PDF |
-| 5 | Magazine Article | Nature, Wired, MIT Tech Review, Quanta, The Atlantic | Hook, Context, Deep Dive, Human Element, Takeaway | PDF or web |
-| 6 | Academic Book | 200-600 page comprehensive work | Preface, Journey chapters, Synthesis, Appendices | PDF or LaTeX |
-| 7 | Technical Blog Post | Engineering blog, FAANG-style essay | Headline, Opening, Problem, Solution, Results, Code, Closing | Markdown or web |
-| 8 | Conference Talk | 15-min presentation, keynote, seminar | Hook, Problem, Method, Results, Limitations, Thank You | Beamer or Reveal.js |
-| 9 | Thesis / Dissertation | PhD, Masters | Full academic structure | LaTeX or PDF |
+| # | Format | Target Venue | Key Output |
+|---|---|---|---|
+| 1 | Research Paper (Conference) | NeurIPS, ICML, CVPR, ACL, IEEE, ACM | Two-column PDF + DOCX |
+| 2 | Pitch Deck | YC, Sequoia, a16z, Accel | PDF slides + DOCX |
+| 3 | Grant Proposal | NSF, NIH, ERC, Horizon, DARPA | PDF + DOCX |
+| 4 | White Paper | Gartner, Microsoft, AWS, Google Cloud | PDF + DOCX |
+| 5 | Magazine Article | Nature, Quanta, MIT Tech Review, Wired | PDF + DOCX |
+| 6 | Academic Book | 200—600 pages | PDF + DOCX |
+| 7 | Technical Blog Post | Medium, Dev.to, Hashnode, Substack | Markdown + PDF + DOCX |
+| 8 | Conference Talk | PowerPoint, Keynote, Beamer, Reveal.js | Slide deck + speaker notes |
+| 9 | Thesis / Dissertation | PhD, Masters, APA/IEEE/Chicago | PDF + DOCX |
+
+Every format produces three files: `.md` (source), `.pdf` (publication-ready), `.docx` (editable). No manual export step.
 
 ---
 
 ## Quick Start
 
 ```bash
-# Clone
-git clone https://github.com/loopiak/korroresearch.git
+git clone https://github.com/KorroAi/korroresearch.git
 cd korroresearch
-
-# Install
 pip install -r requirements.txt
-
-# Generate your first document skeleton
 python scripts/wizard.py
-
-# Open QUICKSTART.md for your exact path
 ```
 
-### First time, never written anything?
+The wizard asks five questions. You get a complete document skeleton with PDF and DOCX generated automatically. Open `QUICKSTART.md` for your exact path: Researcher, Founder, Author, or Speaker.
 
-```bash
-python scripts/wizard.py              # Choose [1] Research Paper
-# Answer 5 questions. Get a complete skeleton.
-# Open QUICKSTART.md → PATH 0: Beginner Researcher
+---
+
+## The Pipeline
+
+```
+PHASE A: BEFORE WRITING
+  wizard.py  →  ideation.md  →  impact.md  →  audience.md  →  style_engine.py
+
+PHASE B: WRITING
+  math_generator.py  →  section guides  →  generate_figures.py  →  consistency_engine.py
+
+PHASE C: BEFORE FINALIZING
+  hallucination_checker.py  →  fact_checker.py  →  source_manager.py
+  →  paperreview.md  →  review_engine.py  →  claim_checker.py
+  →  reproducibility_checklist.py  →  clean_dashes.py  →  style_engine.py
+  →  generate_pdf.py + generate_docx.py
+
+PHASE D: MASTERY
+  mastery.md — 7 dimensions: Taste. Danger. Obsession. Network. Anti-fragility. Timing. Voice.
+
+PHASE E: HUMAN-IN-THE-LOOP
+  Outline approval  →  Section-by-section  →  Inline comments  →  Version history
 ```
 
 ---
 
 ## Scripts
 
-Six production-hardened scripts. Each has `--help`, robust error handling, and graceful fallbacks. Zero known crashes.
+### Production
 
-### wizard.py — Interactive Onboarding
+| Script | Purpose |
+|---|---|
+| `wizard.py` | Interactive onboarding: 5 questions → document skeleton + PDF + DOCX |
+| `generate_pdf.py` | Markdown → publication PDF (two-column or single-column) |
+| `generate_docx.py` | Markdown → editable DOCX (Times New Roman, proper hierarchy) |
+| `generate_figures.py` | Publication charts: bar, line, heatmap, ablation, architecture, pipeline |
+| `semantic_scholar.py` | Paper search + citation formatting: APA, IEEE, BibTeX, ACM |
+| `clean_dashes.py` | Zero-dash enforcement: commas and colons only |
 
-```bash
-python scripts/wizard.py                                    # Interactive: choose format, answer questions
-python scripts/wizard.py --format pitch                     # Skip format selection
-python scripts/wizard.py --format paper --batch \           # Non-interactive mode
-    "My insight" "Why now" "Audience" "Worldview" "Name"
-python scripts/wizard.py --help                             # Show all options
-```
+### Verification Engines
 
-The wizard asks five questions (Shannon Filter), then generates a markdown skeleton with section prompts, writing tips, and a next-steps checklist. Output lands in `output/`.
+| Script | Purpose |
+|---|---|
+| `hallucination_checker.py` | Classify every claim: verified / user-provided / hypothesis / speculative |
+| `fact_checker.py` | Verify statistics, names, institutions, conferences, datasets |
+| `source_manager.py` | Generate BibTeX, DOI, arXiv, APA, IEEE, ACM references |
+| `consistency_engine.py` | Track terminology, variables, citations, numbering across chapters |
+| `style_engine.py` | Switch between Nature, NeurIPS, MIT, McKinsey, YC, NSF presets |
+| `review_engine.py` | Flag missing sections, weak claims, duplicates, venue violations |
+| `math_generator.py` | Generate notation tables, equation stubs, algorithm boxes |
+| `reproducibility_checklist.py` | Dataset, code, hardware, seeds, license, ethics |
+| `claim_checker.py` | Map every claim to experimental evidence |
 
-### generate_pdf.py — Markdown to Publication PDF
-
-```bash
-python scripts/generate_pdf.py paper.md paper.pdf
-python scripts/generate_pdf.py paper.md paper.pdf --template single-column
-python scripts/generate_pdf.py paper.md paper.pdf --preview     # Auto-open after generation
-```
-
-Two engines, zero configuration:
-1. **weasyprint** (primary): HTML+CSS rendering, two-column academic layout, best typography. Requires GTK3 on Windows.
-2. **fpdf2** (fallback): Pure Python, zero system dependencies, works everywhere. Automatic selection.
-
-Output is always PDF. Always.
-
-### claim_checker.py — Claim-Evidence Verification
-
-```bash
-python scripts/claim_checker.py paper.md                  # Human-readable report
-python scripts/claim_checker.py paper.md --strict         # Fail if ANY claim lacks evidence
-python scripts/claim_checker.py paper.md --json           # Machine-readable output
-```
-
-Detects claims in Abstract and Introduction, checks them against data points and references in the Experiments section. Flags orphan claims. Supports section aliases (Abstract/Summary, Experiments/Results/Evaluation).
-
-### clean_dashes.py — Dash Elimination
-
-```bash
-python scripts/clean_dashes.py                            # Process all .md files in skill tree
-python scripts/clean_dashes.py paper.md                   # Process single file
-python scripts/clean_dashes.py --check                    # Dry-run: report only, no changes
-```
-
-Zero dashes policy enforced automatically. Replaces em dashes, en dashes, and double hyphens with commas or colons based on context. Number ranges become "X to Y". Skips code blocks and inline code.
-
-### generate_figures.py — Publication Charts
-
-```bash
-python scripts/generate_figures.py bar --data results.json --output figure1.pdf
-python scripts/generate_figures.py line --data metrics.json --output plot.pdf
-python scripts/generate_figures.py heatmap --data matrix.json --output heatmap.pdf
-python scripts/generate_figures.py ablation --data ablation.json --output ablation.pdf
-```
-
-All charts use a colorblind-friendly ColorBrewer palette at 300 DPI. Vector-ready PDF output. Data format documented in `--help` for each chart type.
-
-**JSON data formats:**
-- `bar`: `{"labels": [...], "values": [...], "highlight_idx": 3}`
-- `line`: `{"x": [...], "series": [{"label": "Our Method", "values": [...]}]}`
-- `heatmap`: `{"labels_x": [...], "labels_y": [...], "matrix": [[...]]}`
-- `ablation`: `{"labels": ["Full Model", ...], "values": [25.7, 24.1, ...], "metric": "PSNR"}`
-
-### semantic_scholar.py — Paper Search & Citation
-
-```bash
-python scripts/semantic_scholar.py search "gradient compression" --limit 5
-python scripts/semantic_scholar.py search "transformers" --json --limit 10
-python scripts/semantic_scholar.py cite abc123def456 --format bibtex
-python scripts/semantic_scholar.py search "test" --offline        # Show API URL without calling
-```
-
-Four citation formats: APA 7th, IEEE, BibTeX, MLA. Exponential backoff with 5 retries for rate limiting. `--offline` flag for dry-run without network. Free API, no key required.
+All scripts have `--help`, `--json`, `--check` (dry-run), `--batch`, and `--offline` flags. Exit codes: 0 = pass, 1 = issues found.
 
 ---
 
@@ -165,204 +117,98 @@ Four citation formats: APA 7th, IEEE, BibTeX, MLA. Exponential backoff with 5 re
 
 ```
 korroresearch/
-├── SKILL.md                       # Claude Code skill entry point
-├── README.md                      # This file
-├── QUICKSTART.md                  # 4 paths: Researcher, Founder, Author, Speaker
-├── LICENSE                        # MIT
-├── requirements.txt               # Python dependencies
-├── output/                        # Generated documents (gitignored except .gitkeep)
-│   └── .gitkeep
-├── assets/
-│   └── mue-x-illustration.png    # Example illustration
+├── SKILL.md                           # Skill entry point (loaded by Claude Code)
+├── README.md                          # This file
+├── QUICKSTART.md                      # 4 paths: Researcher, Founder, Author, Speaker
+├── LICENSE                            # MIT
+├── requirements.txt                   # Python dependencies
+├── output/                            # Generated .md, .pdf, .docx files
+├── assets/                            # Illustrations
 ├── scripts/
-│   ├── wizard.py                  # Interactive onboarding wizard (0 → skeleton in 60s)
-│   ├── generate_pdf.py            # Markdown → publication PDF (weasyprint or fpdf2)
-│   ├── generate_figures.py        # Publication charts (bar, line, heatmap, ablation)
-│   ├── claim_checker.py           # Claim-evidence verification
-│   ├── semantic_scholar.py        # Paper search + citation formatting (4 styles)
-│   └── clean_dashes.py            # Zero-dash enforcement (commas/colons only)
+│   ├── wizard.py                      # Interactive onboarding (→ .md + .pdf + .docx)
+│   ├── generate_pdf.py                # Markdown → publication PDF
+│   ├── generate_docx.py               # Markdown → editable DOCX
+│   ├── generate_figures.py            # Publication charts and diagrams
+│   ├── semantic_scholar.py            # Paper search + citation formatting
+│   ├── clean_dashes.py                # Zero-dash enforcement
+│   ├── hallucination_checker.py       # Claim classification engine
+│   ├── fact_checker.py                # Statistic and fact verification
+│   ├── source_manager.py              # Reference generation and verification
+│   ├── consistency_engine.py          # Global terminology and variable tracking
+│   ├── style_engine.py                # Venue-specific style presets
+│   ├── review_engine.py               # Pre-export issue detection
+│   ├── math_generator.py              # Notation tables and algorithm boxes
+│   ├── reproducibility_checklist.py   # Conference-required checklist
+│   └── claim_checker.py               # Claim-evidence mapping
 └── references/
-    ├── sections/                  # Section writing guides
-    │   ├── abstract.md            #   3 abstract templates
-    │   ├── introduction.md        #   4 task intro + 3 challenge + 4 pipeline versions
-    │   ├── relatedwork.md         #   Thematic vs chronological, gap identification
-    │   ├── method.md              #   Technical clarity, reproducibility, notation
-    │   ├── experiments.md         #   3 core questions, experiment planning
-    │   ├── conclusion.md          #   Summary, limitations, future work
-    │   └── title.md               #   Strategic title design (read 5x more than abstract)
-    ├── processes/                 # Meta-workflow guides
-    │   ├── ideation.md            #   7 protocols: Shannon filter, anti-paper, elegance razor
-    │   ├── impact.md              #   8 principles of unforgettable writing
-    │   ├── audience.md            #   Reader psychology: who reads, what they believe
-    │   ├── mastery.md             #   7 unteachable dimensions (taste, danger, obsession...)
-    │   ├── end-to-end.md          #   Blank page to submit: timeline, revision cycles
-    │   ├── rebuttal.md            #   Reviewer response: tone, structure, point-by-point
-    │   ├── venues.md              #   Conference/journal selection: impact, audience
-    │   ├── supplementary.md       #   Appendices, extra results, cross-referencing
-    │   ├── coauthoring.md         #   Multi-author workflows, CRediT taxonomy
-    │   ├── grantsections.md       #   Budget, timeline, broader impact, preliminary results
-    │   ├── recognition.md         #   12-month flywheel: paper → talk → magazine → investor
-    │   └── dossier.md             #   Complete package: paper + pitch + press kit + social proof
-    ├── formats/                   # Output format guides
-    │   ├── latexieee.md           #   IEEE/ACM conference-ready LaTeX
-    │   ├── latexmlm.md            #   NeurIPS/ICML/ACL conference-ready LaTeX
-    │   ├── htmlpdf.md             #   HTML + weasyprint professional PDF
-    │   ├── docx.md                #   python-docx editable documents
-    │   ├── presentation.md        #   Beamer/Reveal.js talks
-    │   ├── pitchdeck.md           #   Investor pitch structure and design
-    │   ├── blogpost.md            #   Technical blog posts, FAANG-style
-    │   └── magazine.md            #   Nature, Wired, MIT Tech Review, The Atlantic
-    ├── examples/                  # Annotated examples
-    │   ├── muex_paper.md           #   Complete MUE-X research paper (full example)
-    │   ├── abstracttemplateaannotated.md
-    │   └── introductionannotated.md
-    ├── paperreview.md             # 5-dimension adversarial self-review
-    ├── figuresandtables.md        # Visual standards + anti-patterns gallery
-    └── doesmywritingflowsource.md # Paragraph flow diagnostics
+    ├── sections/                      # Section writing guides (8 files)
+    ├── processes/                     # Meta-workflow guides (14 files)
+    ├── formats/                       # Output format guides (18 files)
+    ├── engines/                       # Engine documentation (7 files)
+    ├── examples/                      # Annotated examples (3 files)
+    ├── paperreview.md                 # 5-dimension adversarial self-review
+    ├── figuresandtables.md            # Visual standards + anti-patterns
+    ├── doesmywritingflowsource.md     # Paragraph flow diagnostics
+    └── typography-layout.md           # 13 typography rules + pre-PDF checklist
 ```
 
 ---
 
-## The Pipeline
+## Global Quality Rules
 
-```
-🎠 WIZARD          →  Generate skeleton with section prompts
-🔮 IDEATION        →  Shannon Filter, impact analysis, audience profiling
-⚡ WRITE           →  One paragraph at a time, one message per paragraph
-⚡+🔮 VERIFY       →  claim_checker.py, reverse outlining
-🔮 REVIEW         →  5-dimension adversarial self-review
-📄 FORMAT         →  generate_pdf.py, generate_figures.py
-✅ SUBMIT         →  Ready for reviewers, investors, or editors
-```
-
----
-
-## Key Principles
-
-1. **Idea quality before writing.** The Shannon Filter determines if your idea deserves to exist as a document. If the idea fails, do not write.
-2. **Impact over information.** Being correct is not enough. You must be unignorable. Every sentence must earn its place.
-3. **Claim-evidence alignment.** Every claim maps to specific experimental evidence. No orphan claims. No "could potentially" or "may allow."
-4. **Audience-first thinking.** Write for a skeptical reader who wants to reject, fund, or ignore your document. Remove every excuse they could use.
-5. **Visual-first impression.** Figures and tables are consumed before text. They must tell the complete story without reading a single word of prose.
-6. **Zero dashes.** No em dashes, en dashes, or double hyphens. Commas and colons only. Enforced by `clean_dashes.py`.
-7. **Active voice.** "We propose" not "It is proposed." State what changed before explaining how.
-
----
-
-## Quality Rules
-
-### Writing Mechanics
-- One paragraph = one message. First sentence states the message.
-- Define all terms before using them. No forward references.
-- Maintain terminology stability across the entire document.
-- Sentence-to-sentence flow: cause, contrast, consequence, or refinement.
-- Quantify every claim: "3.2x faster" not "significantly faster."
+### Non-Negotiable
+- **No dashes.** Em dashes, en dashes, double hyphens → replaced with commas or colons.
+- **Active voice.** At least 80% of sentences. "We analyzed" not "It was analyzed."
+- **Orphan headings.** No section title alone at the bottom of a page. Enforced by `generate_pdf.py`.
+- **Claim-evidence map.** Every claim must trace to a specific experiment, citation, or preliminary result.
+- **Terminology stability.** Same concept, same name, across the entire document.
 
 ### Tables
-- Caption ABOVE the table.
-- Booktabs style: no vertical lines, no double rules.
-- Highlight best and second-best values.
-- Label metric direction: PSNR ↑, LPIPS ↓, Runtime (ms) ↓.
-- Consistent decimal places within each metric column.
+- Caption above. Booktabs style (no vertical lines). Metric direction labeled: PSNR ↑, LPIPS ↓.
+- Best and second-best values highlighted. Consistent decimal places per column.
 
 ### Figures
-- Every figure must have a clear message visible without reading the caption.
-- Vector graphics (PDF/SVG) for diagrams, high-resolution PNG for photos.
-- Colorblind-friendly palette (viridis, cividis, or ColorBrewer).
-- Figure captions are content, not decoration. State what to observe and the conclusion.
+- Vector graphics for diagrams. Colorblind-friendly palette (viridis, cividis, ColorBrewer).
+- Captions state what to observe AND the conclusion. Every figure tells its story without the text.
 
 ### Citations
-- Prefer recent papers (last 3 years) for SOTA comparisons.
-- Cite the original source, not a survey that mentions it.
-- Format consistently: author-year or numeric depending on venue.
-- Use `semantic_scholar.py` for search and formatting.
+- Use `semantic_scholar.py` for search. Prefer recent (last 3 years) for SOTA comparisons.
+- Cite the original source, not a survey. Format consistently per venue.
 
 ---
 
 ## Requirements
 
-- **Python 3.10+** ([python.org](https://python.org))
-- **pip packages**: `pip install -r requirements.txt`
-  - `markdown` (HTML conversion)
-  - `fpdf2` (PDF generation, pure Python)
-  - `weasyprint` (best PDF typography, optional, needs GTK3 on Windows)
-  - `matplotlib` (figures and charts)
-
-Semantic Scholar API is free, no key required. Rate limiting is handled with exponential backoff.
+- Python 3.10+
+- `pip install -r requirements.txt`
+- Semantic Scholar API: free, no key required
+- WeasyPrint: optional, requires GTK3 on Windows for best typography (fpdf2 fallback works everywhere)
 
 ---
 
 ## Installation
 
-### Claude Code (Recommended)
-
 ```bash
-git clone https://github.com/loopiak/korroresearch.git ~/.claude/skills/korroresearch
+# Claude Code (recommended)
+git clone https://github.com/KorroAi/korroresearch.git ~/.claude/skills/korroresearch
 cd ~/.claude/skills/korroresearch
 pip install -r requirements.txt
-```
 
-The skill activates automatically. Just mention "research paper," "pitch deck," "grant proposal," or invoke it directly with `/korroresearch`.
-
-### Standalone
-
-```bash
-git clone https://github.com/loopiak/korroresearch.git
+# Standalone
+git clone https://github.com/KorroAi/korroresearch.git
 cd korroresearch
 pip install -r requirements.txt
 python scripts/wizard.py
 ```
 
-### Windows Users
-
-PDF generation uses fpdf2 by default (zero system dependencies). For weasyprint's superior typography with two-column academic layout, install GTK3:
-
-```bash
-# Option 1: MSYS2 (recommended)
-pacman -S mingw-w64-x86_64-gtk3
-
-# Option 2: gvsbuild
-pip install weasyprint
-gvsbuild build gtk3
-```
-
-Either way, `generate_pdf.py` always produces a PDF. The best available engine is selected automatically.
-
----
-
-## Development
-
-```bash
-# Run all checks
-python scripts/clean_dashes.py --check
-python scripts/claim_checker.py output/paper_draft.md --strict
-
-# Run a single script with full help
-python scripts/wizard.py --help
-```
-
-All scripts use `argparse`. All have `--help`. All handle `KeyboardInterrupt` cleanly. Exit codes: 0 = success, 1 = error, 130 = interrupted.
-
----
-
-## Complete Example
-
-The repository includes a fully written research paper generated with KORRO Research:
-
-**[MUE-X: Multi-User Environment for Cross-Modal Agents with Shared Memory and Zero-Shot Task Transfer](references/examples/muex_paper.md)**
-
-This paper demonstrates every principle and script in action:
-- Generated with `wizard.py --format paper --batch`
-- Claims verified with `claim_checker.py --strict` (33 claims, 0 needs_evidence)
-- Formatted as publication-ready PDF with `generate_pdf.py`
-- Zero dashes, verified with `clean_dashes.py --check`
+The skill activates automatically in Claude Code. Mention "research paper", "pitch deck", "grant proposal", or any supported format.
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE)
+MIT — see [LICENSE](LICENSE). Use it, fork it, ship it.
 
 ---
 
-Built with the conviction that writing cannot save a bad idea, but bad writing can kill a great one.
+Built on the conviction that writing cannot save a bad idea, but bad writing can kill a great one — and that no document should ship with a claim it cannot prove.
