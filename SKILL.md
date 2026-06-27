@@ -529,6 +529,7 @@ Adapt to request complexity:
 ### Executable Scripts
 - `scripts/wizard.py` — **START HERE.** Interactive wizard: `python scripts/wizard.py --format <name> [--vc yc|sequoia|a16z|accel] [--venue neurips|icml|cvpr|acl|emccv|iccv] [--agency nsf|nih|erc|horizon|darpa]`
 - `scripts/generate_pdf.py` — Markdown to publication PDF: `python scripts/generate_pdf.py paper.md paper.pdf [--template two-column|single-column]`
+- `scripts/generate_docx.py` — Markdown to editable DOCX: `python scripts/generate_docx.py paper.md paper.docx`
 - `scripts/semantic_scholar.py` — Find and cite papers: `python scripts/semantic_scholar.py search "query" --limit 5 --format apa`
 - `scripts/generate_figures.py` — Publication figures (bar, line, heatmap, ablation, architecture, pipeline, confusion)
 - `scripts/claim_checker.py` — Verify claims map to evidence: `python scripts/claim_checker.py paper.md [--strict] [--json]`
