@@ -4,6 +4,8 @@
 
 **From blank page to venue-compliant PDF. Zero hallucinations. Every claim verified.**
 
+**[See a complete example → MUE-X: Cross-Modal Agents with Shared Memory](references/examples/muex_paper.pdf)**
+
 ```bash
 python scripts/wizard.py
 ```
