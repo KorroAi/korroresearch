@@ -7,7 +7,6 @@
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge" />
   <img src="https://img.shields.io/github/license/AbhinandanMandal/korroresearch?style=for-the-badge" />
   <img src="https://img.shields.io/github/last-commit/AbhinandanMandal/korroresearch?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge" />
     <img src="https://img.shields.io/badge/Maintainer-KorroAi-green?style=for-the-badge" />
 </p>
 
