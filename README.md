@@ -1,12 +1,12 @@
 # KORRO Research
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/AbhinandanMandal/korroresearch?style=for-the-badge" />
-  <img src="https://img.shields.io/github/forks/AbhinandanMandal/korroresearch?style=for-the-badge" />
-  <img src="https://img.shields.io/github/contributors/AbhinandanMandal/korroresearch?style=for-the-badge" />
+  <img src="https://img.shields.io/github/stars/KorroAi/korroresearch?style=for-the-badge" />
+  <img src="https://img.shields.io/github/forks/KorroAi/korroresearch?style=for-the-badge" />
+  <img src="https://img.shields.io/github/contributors/KorroAi/korroresearch?style=for-the-badge" />
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge" />
-  <img src="https://img.shields.io/github/license/AbhinandanMandal/korroresearch?style=for-the-badge" />
-  <img src="https://img.shields.io/github/last-commit/AbhinandanMandal/korroresearch?style=for-the-badge" />
+  <img src="https://img.shields.io/github/license/KorroAi/korroresearch?style=for-the-badge" />
+  <img src="https://img.shields.io/github/last-commit/KorroAi/korroresearch?style=for-the-badge" />
     <img src="https://img.shields.io/badge/Maintainer-Korrocorp-green?style=for-the-badge" />
 </p>
 
