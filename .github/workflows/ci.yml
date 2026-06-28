@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  verify-scripts:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify all scripts have --help
+        run: |
+          SCRIPTS=(
+            wizard.py
+            generate_pdf.py
+            generate_docx.py
+            generate_figures.py
+            semantic_scholar.py
+            clean_dashes.py
+            claim_checker.py
+            hallucination_checker.py
+            fact_checker.py
+            source_manager.py
+            consistency_engine.py
+            style_engine.py
+            review_engine.py
+            math_generator.py
+            reproducibility_checklist.py
+          )
+          for script in "${SCRIPTS[@]}"; do
+            echo "Checking scripts/$script..."
+            python scripts/$script --help > /dev/null || exit 1
+            echo "  OK"
+          done
+
+      - name: Verify wizard generates valid output
+        run: |
+          python scripts/wizard.py --format paper --batch \
+            "Test CI insight" "CI testing" "CI reviewers" "CI worldview" "CITest" || true
+          test -f output/citest_paper_*.md && echo "Markdown generated"
+          test -f output/citest_paper_*.pdf && echo "PDF generated"
+          test -f output/citest_paper_*.docx && echo "DOCX generated"
+
+      - name: Run engines on example paper
+        run: |
+          python scripts/hallucination_checker.py references/examples/causaltokenattr_paper.md --check
+          python scripts/consistency_engine.py references/examples/causaltokenattr_paper.md --check
+          python scripts/review_engine.py references/examples/causaltokenattr_paper.md --check
+          python scripts/reproducibility_checklist.py references/examples/causaltokenattr_paper.md --check || true

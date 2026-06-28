@@ -145,7 +145,7 @@ korroresearch/
     ├── processes/                     # Meta-workflow guides (14 files)
     ├── formats/                       # Output format guides (18 files)
     ├── engines/                       # Engine documentation (7 files)
-    ├── examples/                      # Annotated examples (3 files)
+    ├── examples/                      # Complete example papers (4 files)
     ├── paperreview.md                 # 5-dimension adversarial self-review
     ├── figuresandtables.md            # Visual standards + anti-patterns
     ├── doesmywritingflowsource.md     # Paragraph flow diagnostics
