@@ -3,7 +3,7 @@ name: korroresearch
 description: Universal academic and professional writing skill. Use whenever the user needs to write, draft, revise, or format any of: research paper, academic article, conference paper, journal submission, grant proposal, white paper, literature review, academic book, thesis, dissertation, technical blog post, pitch deck, investor deck, conference talk, keynote, or poster. Triggers on: "research paper", "academic paper", "write a paper", "paper draft", "conference paper", "journal article", "scientific writing", "grant proposal", "literature review", "white paper", "academic book", "thesis", "dissertation", "publishable", "IEEE format", "ACM format", "NeurIPS format", "Nature style", "peer review", "camera ready", "arxiv", "rebuttal", "reviewer response", "pitch deck", "investor deck", "keynote", "technical blog", "blog post", "dissertation defense", "impact", "unignorable". Even if the user only mentions one section, use this skill: it contains section-specific templates and review checklists for every format.
 ---
 
-# KORRO Research v2
+# KORRO Research
 
 **Writing that ships. Zero hallucinations. Venue-ready.**
 

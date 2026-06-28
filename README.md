@@ -1,4 +1,6 @@
-# KORRO Research v2
+# KORRO Research
+
+![KORRO Research](assets/illustration.png)
 
 **From blank page to venue-compliant PDF. Zero hallucinations. Every claim verified.**
 
