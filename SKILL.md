@@ -3,7 +3,7 @@ name: korroresearch
 description: Universal academic and professional writing skill. Use whenever the user needs to write, draft, revise, or format any of: research paper, academic article, conference paper, journal submission, grant proposal, white paper, literature review, academic book, thesis, dissertation, technical blog post, pitch deck, investor deck, conference talk, keynote, or poster. Triggers on: "research paper", "academic paper", "write a paper", "paper draft", "conference paper", "journal article", "scientific writing", "grant proposal", "literature review", "white paper", "academic book", "thesis", "dissertation", "publishable", "IEEE format", "ACM format", "NeurIPS format", "Nature style", "peer review", "camera ready", "arxiv", "rebuttal", "reviewer response", "pitch deck", "investor deck", "keynote", "technical blog", "blog post", "dissertation defense", "impact", "unignorable". Even if the user only mentions one section, use this skill: it contains section-specific templates and review checklists for every format.
 ---
 
-# KORRO Research v2
+# KORRO Research
 
 **Writing that ships. Zero hallucinations. Venue-ready.**
 
@@ -47,7 +47,7 @@ Seven pillars — format-agnostic, always apply:
 4. **Audience-first thinking** — Write for a skeptical reader who wants to reject/fund/ignore your document. Remove every excuse they could use.
 5. **Visual-first impression** — Figures, slides, and tables are consumed first. They must tell the story without reading the text.
 6. **Readability and fluidity** — Every sentence must be a pleasure to read. Run `references/doesmywritingflowsource.md` before finalizing. Good writing is not about complexity. It is about clarity, rhythm, and forward momentum.
-7. **Typography and layout** — A document that looks amateur is treated as amateur. Run `references/typography-layout.md` before generating PDF. Font hierarchy, spacing, margins, page geometry, figure placement, widows and orphans: every visual detail signals quality or its absence.
+7. **Typography and layout** — A document that looks amateur is treated as amateur. Run `references/typography-layout.md` before generating PDF. Font hierarchy, spacing, margins, page geometry, figure placement, widows and orphans, orphan headings: every visual detail signals quality or its absence.
 
 ---
 
@@ -110,7 +110,7 @@ Q4: "Is my audience investors / executives / non-specialists?"
 19. **Claim-evidence check** — `python scripts/claim_checker.py paper.md --strict`
 20. **Reproducibility checklist** — `python scripts/reproducibility_checklist.py paper.md` — Dataset, code, hardware, training hours, random seed, license, ethics.
 21. **Readability and fluidity check** — `references/doesmywritingflowsource.md`
-22. **Typography and layout check** — `references/typography-layout.md`
+22. **Typography and layout check** — `references/typography-layout.md` — Font hierarchy, spacing, margins, widows/orphans, orphan headings, page geometry.
 23. **Clean dashes** — `python scripts/clean_dashes.py paper.md`
 24. **Style compliance** — `python scripts/style_engine.py paper.md --check` — Verifies format compliance for target venue.
 25. **Generate output** — Format guide + corresponding script in `scripts/`.
@@ -498,7 +498,7 @@ Adapt to request complexity:
 - `references/paperreview.md` — 5-dimension adversarial self-review
 - `references/figuresandtables.md` — Publication-ready visuals + anti-patterns gallery
 - `references/doesmywritingflowsource.md` — Paragraph clarity and flow diagnostics
-- `references/typography-layout.md` — Typography, font hierarchy, spacing, page layout, widows/orphans
+- `references/typography-layout.md` — Typography, font hierarchy, spacing, page layout, widows/orphans, orphan headings
 
 ### Output Formats
 
@@ -529,6 +529,7 @@ Adapt to request complexity:
 ### Executable Scripts
 - `scripts/wizard.py` — **START HERE.** Interactive wizard: `python scripts/wizard.py --format <name> [--vc yc|sequoia|a16z|accel] [--venue neurips|icml|cvpr|acl|emccv|iccv] [--agency nsf|nih|erc|horizon|darpa]`
 - `scripts/generate_pdf.py` — Markdown to publication PDF: `python scripts/generate_pdf.py paper.md paper.pdf [--template two-column|single-column]`
+- `scripts/generate_docx.py` — Markdown to editable DOCX: `python scripts/generate_docx.py paper.md paper.docx`
 - `scripts/semantic_scholar.py` — Find and cite papers: `python scripts/semantic_scholar.py search "query" --limit 5 --format apa`
 - `scripts/generate_figures.py` — Publication figures (bar, line, heatmap, ablation, architecture, pipeline, confusion)
 - `scripts/claim_checker.py` — Verify claims map to evidence: `python scripts/claim_checker.py paper.md [--strict] [--json]`

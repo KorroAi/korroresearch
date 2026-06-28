@@ -137,6 +137,18 @@ Headers/footers are optional but must be consistent if used.
 - Never use "the figure below" or "the table above" — figures may move during final layout.
 - All cross-references must be verifiable. A reader must be able to find every referenced figure, table, and section.
 
+### Rule 13: Orphan Headings (NON-NEGOTIABLE)
+
+A section title must NEVER sit alone at the bottom of a page with its content on the next page. This is the single ugliest layout error in document production and signals amateur typesetting instantly.
+
+**Detection**: A heading is orphaned when fewer than 3 lines of body text can fit below it before the page break.
+
+**Fix**: Force a page break before the heading so it starts at the top of the next page with its content.
+
+**Enforced by**: `scripts/generate_pdf.py` — the PDF generator checks available space before every H2 heading (needs 40mm minimum: heading + 3 body lines) and H3 heading (needs 28mm minimum: sub-heading + 2 body lines). If the space is insufficient, a page break is inserted automatically.
+
+**Manual check**: After generating PDF, scroll through and verify that no section title appears as the last printed element on any page. If it does, insert `\newpage` before that heading in the markdown source.
+
 ---
 
 ## Pre-PDF Checklist
@@ -150,6 +162,8 @@ Before running `python scripts/generate_pdf.py`, verify:
 - [ ] Margins at least 20mm on all sides
 - [ ] No widows (single line at top of page)
 - [ ] No orphans (single line at bottom of page)
+- [ ] No orphan headings (section title alone at page bottom, body on next page)
+- [ ] Every heading has at least 3 lines of body text following it on the same page
 - [ ] All pages after first are numbered
 - [ ] All figures have captions BELOW
 - [ ] All tables have captions ABOVE

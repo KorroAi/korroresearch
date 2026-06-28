@@ -369,17 +369,30 @@ def _render_fpdf2(md_text, output_path):
     for block_type, content, meta in blocks:
 
         if block_type == 'heading':
+            # Prevent orphan headings: a heading must never sit alone at the bottom of a page
+            # Rule: if there's not enough room for heading + at least 3 lines of text below, break before
+            usable_h = pdf.h - pdf.b_margin
+            min_room_h2 = 40  # mm: heading height + 3 body lines minimum
+            min_room_h3 = 28  # mm: sub-heading + 2 body lines minimum
+            min_room_h1 = 50  # mm: title needs room for abstract/intro
+
             if meta == 1:
+                if pdf.get_y() > 30:  # H1 should start near top; force new page if not
+                    pdf.add_page()
                 pdf.ln(4)
                 pdf.set_font(font_name, 'B', 18)
                 pdf.multi_cell(page_w, 8, content, align='C')
                 pdf.ln(3)
             elif meta == 2:
+                if pdf.get_y() + min_room_h2 > usable_h:
+                    pdf.add_page()
                 pdf.ln(3)
                 pdf.set_font(font_name, 'B', 13)
                 pdf.multi_cell(page_w, 6, content, align='L')
                 pdf.ln(2)
             elif meta == 3:
+                if pdf.get_y() + min_room_h3 > usable_h:
+                    pdf.add_page()
                 pdf.ln(2)
                 pdf.set_font(font_name, 'BI', 11)
                 pdf.multi_cell(page_w, 5.5, content, align='L')
