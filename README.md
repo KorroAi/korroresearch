@@ -221,8 +221,4 @@ The skill activates automatically in Claude Code. Mention "research paper", "pit
 
 ## License
 
-MIT — see [LICENSE](LICENSE). Use it, fork it, ship it.
-
----
-
-Built on the conviction that writing cannot save a bad idea, but bad writing can kill a great one — and that no document should ship with a claim it cannot prove.
+© 2026 Korroresearch · MIT [License](LICENSE) · [GitHub](https://github.com/KorroAi) · Built on the conviction that writing cannot save a bad idea, but bad writing can kill a great one — and that no document should ship with a claim it cannot prove.
