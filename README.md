@@ -1,6 +1,16 @@
 # KORRO Research
 
-![KORRO Research](assets/illustration.png)
+<p align="center">
+  <img src="https://img.shields.io/github/stars/AbhinandanMandal/korroresearch?style=for-the-badge" />
+  <img src="https://img.shields.io/github/forks/AbhinandanMandal/korroresearch?style=for-the-badge" />
+  <img src="https://img.shields.io/github/contributors/AbhinandanMandal/korroresearch?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge" />
+  <img src="https://img.shields.io/github/license/AbhinandanMandal/korroresearch?style=for-the-badge" />
+  <img src="https://img.shields.io/github/last-commit/AbhinandanMandal/korroresearch?style=for-the-badge" />
+    <img src="https://img.shields.io/badge/Maintainer-KorroAi-green?style=for-the-badge" />
+</p>
+
+![MUE-X: Cross-modal agents with shared memory and zero-shot task transfer](assets/mue-x-illustration.png)
 
 **From blank page to venue-compliant PDF. Zero hallucinations. Every claim verified.**
 
