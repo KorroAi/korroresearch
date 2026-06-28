@@ -1,7 +1,7 @@
 # KORRO Research
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/KorroAi/korroresearch?style=for-the-badge" />
+  <img src="https://img.shields.io/github/stars/KorroAi/korroresearch?style=for-the-badge&cacheSeconds=60">
   <img src="https://img.shields.io/github/forks/KorroAi/korroresearch?style=for-the-badge" />
   <img src="https://img.shields.io/github/contributors/KorroAi/korroresearch?style=for-the-badge" />
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge" />
